@@ -1,0 +1,47 @@
+composer create-project laravel/laravel NOMBRE_PROYECTO
+composer require laravel/jetstream
+php artisan jetstream:install livewire
+
+npm install
+npm run dev
+
+composer require jeroennoten/laravel-adminlte
+php artisan adminlte:install
+php artisan vendor:publish --tag=jetstream-views
+
+#administrar permisos
+composer require spatie/laravel-permission
+
+//Configuraciones
+
+1 - filesystem.php
+        'default' => env('FILESYSTEM_DRIVER', 'public'), cambiar local por public
+1 - jetstream.php
+ en 'features' =>  descomentar => Features::profilePhotos(),
+
+
+
+php artisan storage:link
+
+Modificar 
+ App\Providers\RouteServiceProvider;
+       -   public const HOME = '/dashboard';
+       por 
+       -   public const HOME = '/';
+
+y en boot agregar, para que laravel reconozca el fichero admin.php como un fichero de rutas:
+
+                Route::middleware('web')
+                ->prefix('admin')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
+
+
+
+
+/***Errores durante el proyecto****/
+Cannot write to directory "public/storage/cursos/"
+ - dirigirte al archivo .env buscar la variable FILESYSTEM_DRIVER y ahí cambiarlo de local a public.
+
+No funciona la clase de tailwind py-36
+ - quitar la linea  "mode: 'jit'" de tailwind.config.js y correr en la consola npm run dev
