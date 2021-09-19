@@ -47,7 +47,7 @@ class PostController extends Controller
         ]);
 
         $category->permissions()->attach($request->permissions);*/
-        return redirect()->route('admin.Categorys.index')->with('info', 'Categoria creada correctamente');
+        return redirect()->route('admin.posts.index')->with('info', 'Categoria creada correctamente');
     }
 
     /**
@@ -91,7 +91,7 @@ class PostController extends Controller
         ]);
         $category->permissions()->sync($request->permissions);*/
 
-        return redirect()->route('admin.post.edit', compact('post'));
+        return redirect()->route('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -103,6 +103,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('admin.post.index')->with('info','Post eliminado correctamente');
+        return redirect()->route('admin.posts.index')->with('info','Post eliminado correctamente');
     }
 }

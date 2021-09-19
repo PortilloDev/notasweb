@@ -40,14 +40,15 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'slug' => 'required|string',
         ]);
 
-       /* $category = Category::create([
-            'name' =>$request->name
+       $category = Tag::create([
+            'name' =>$request->name,
+            'slug' =>$request->slug,
         ]);
 
-        $category->permissions()->attach($request->permissions);*/
-        return redirect()->route('admin.tag.index')->with('info', 'Etiqueta creada correctamente');
+        return redirect()->route('admin.tags.index')->with('info', 'Etiqueta creada correctamente');
     }
 
     /**
@@ -84,14 +85,15 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'permissions' => 'required',
+            'slug' => 'required|string',
         ]);
-       /* $category->update([
-            'name' => $request->name,
-        ]);
-        $category->permissions()->sync($request->permissions);*/
 
-        return redirect()->route('admin.tag.edit', compact('tag'));
+        $tag->update([
+            'name' =>$request->name,
+            'slug' =>$request->slug,
+        ]);
+
+        return redirect()->route('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -103,6 +105,6 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return redirect()->route('admin.tag.index')->with('info','Tag eliminado correctamente');
+        return redirect()->route('admin.tags.index')->with('info','Tag eliminado correctamente');
     }
 }

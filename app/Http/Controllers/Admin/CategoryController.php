@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+
 class CategoryController extends Controller
 {
      /**
@@ -27,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categorys.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -40,14 +41,16 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'slug' => 'required|string',
+            'body' => 'required|string',
+        ]);
+        $category = Category::create([
+            'name' =>$request->name,
+            'slug' =>$request->slug,
+            'body' =>$request->body,
         ]);
 
-       /* $category = Category::create([
-            'name' =>$request->name
-        ]);
-
-        $category->permissions()->attach($request->permissions);*/
-        return redirect()->route('admin.Categorys.index')->with('info', 'Categoria creada correctamente');
+        return redirect()->route('admin.categories.index')->with('info', 'Categoria creada correctamente');
     }
 
     /**
@@ -84,14 +87,16 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'permissions' => 'required',
+            'slug' => 'required|string',
+            'body' => 'required|string',
         ]);
-       /* $category->update([
+        $category->update([
             'name' => $request->name,
+            'slug' =>$request->slug,
+            'body' =>$request->body,
         ]);
-        $category->permissions()->sync($request->permissions);*/
 
-        return redirect()->route('admin.Categorys.edit', compact('category'));
+        return redirect()->route('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -103,6 +108,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.Categorys.index')->with('info','Categoria eliminada correctamente');
+        return redirect()->route('admin.categories.index')->with('info','Categoria eliminada correctamente');
     }
 }
