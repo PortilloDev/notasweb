@@ -3,22 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-
-class RoleController extends Controller
+class PostController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        $posts = Post::all();
+        return view('admin.post.index', compact('posts'));
     }
 
     /**
@@ -28,8 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all();
-        return view('admin.roles.create', compact('permissions'));
+        return view('admin.post.create');
     }
 
     /**
@@ -42,15 +40,14 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'permissions' => 'required',
         ]);
 
-        $role = Role::create([
+       /* $category = Category::create([
             'name' =>$request->name
         ]);
 
-        $role->permissions()->attach($request->permissions);
-        return redirect()->route('admin.roles.index')->with('info', 'Rol creado correctamente');
+        $category->permissions()->attach($request->permissions);*/
+        return redirect()->route('admin.Categorys.index')->with('info', 'Categoria creada correctamente');
     }
 
     /**
@@ -59,9 +56,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Post $post)
     {
-        return view('admin.roles.show', compact('role'));
+        return view('admin.post.show', compact('post'));
     }
 
     /**
@@ -70,11 +67,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Post $post)
     {
         
-        $permissions = Permission::all();
-        return view('admin.roles.edit', compact('role','permissions'));
+        return view('admin.post.edit', compact('category'));
     }
 
     /**
@@ -84,18 +80,18 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Post $post)
     {
         $request->validate([
             'name' => 'required|string',
             'permissions' => 'required',
         ]);
-        $role->update([
+       /* $category->update([
             'name' => $request->name,
         ]);
-        $role->permissions()->sync($request->permissions);
+        $category->permissions()->sync($request->permissions);*/
 
-        return redirect()->route('admin.roles.edit', compact('role'));
+        return redirect()->route('admin.post.edit', compact('post'));
     }
 
     /**
@@ -104,9 +100,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Post $post)
     {
-        $role->delete();
-        return redirect()->route('admin.roles.index')->with('info','Rol eliminado correctamente');
+        $post->delete();
+        return redirect()->route('admin.post.index')->with('info','Post eliminado correctamente');
     }
 }

@@ -3,22 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-
-class RoleController extends Controller
+class TagController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        $tags = Tag::all();
+        return view('admin.tag.index', compact('tags'));
     }
 
     /**
@@ -28,8 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::all();
-        return view('admin.roles.create', compact('permissions'));
+        return view('admin.tag.create');
     }
 
     /**
@@ -42,15 +40,14 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'permissions' => 'required',
         ]);
 
-        $role = Role::create([
+       /* $category = Category::create([
             'name' =>$request->name
         ]);
 
-        $role->permissions()->attach($request->permissions);
-        return redirect()->route('admin.roles.index')->with('info', 'Rol creado correctamente');
+        $category->permissions()->attach($request->permissions);*/
+        return redirect()->route('admin.tag.index')->with('info', 'Etiqueta creada correctamente');
     }
 
     /**
@@ -59,9 +56,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Tag $tag)
     {
-        return view('admin.roles.show', compact('role'));
+        return view('admin.tag.show', compact('tag'));
     }
 
     /**
@@ -70,11 +67,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Tag $tag)
     {
         
-        $permissions = Permission::all();
-        return view('admin.roles.edit', compact('role','permissions'));
+        return view('admin.tag.edit', compact('tag'));
     }
 
     /**
@@ -84,18 +80,18 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Tag $tag)
     {
         $request->validate([
             'name' => 'required|string',
             'permissions' => 'required',
         ]);
-        $role->update([
+       /* $category->update([
             'name' => $request->name,
         ]);
-        $role->permissions()->sync($request->permissions);
+        $category->permissions()->sync($request->permissions);*/
 
-        return redirect()->route('admin.roles.edit', compact('role'));
+        return redirect()->route('admin.tag.edit', compact('tag'));
     }
 
     /**
@@ -104,9 +100,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Tag $tag)
     {
-        $role->delete();
-        return redirect()->route('admin.roles.index')->with('info','Rol eliminado correctamente');
+        $tag->delete();
+        return redirect()->route('admin.tag.index')->with('info','Tag eliminado correctamente');
     }
 }

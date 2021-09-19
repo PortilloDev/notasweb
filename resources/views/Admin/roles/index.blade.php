@@ -7,6 +7,11 @@
 @stop
 
 @section('content')
+    @if(session('info'))
+        <div class="alert alert-primary" role="alert">
+            <strong>!Fantastico!</strong> {{ session('info') }}
+        </div>
+    @endif
     <div class="card">
         <div class="card-header">
             <a href="{{ route('admin.roles.create') }}">Crear rol</a>
@@ -23,24 +28,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($roles as $rol )
+                    @forelse ($roles as $role )
                         <tr>
-                            <td>{{ $rol->id }}</td>
-                            <td>{{ $rol->name }}</td>
-                            <td>
+                            <td>{{ $role->id }}</td>
+                            <td>{{ $role->name }}</td>
+                            <td width="10px">
                                 <a class="btn btn-secondary" href="{{ route('admin.roles.edit', $role) }}">Edit</a>
                             </td>
-                        </tr>
-                        <tr>
-                            <form action="{{ route('admin.roles.destroy', $role) }}" method="POST">
-                                @method('delete')
-                                @csrf
-                                <button class="btn btn-danger">Eliminar</button>    
-                            </form>
+                            <td width="10px">
+                                <form action="{{ route('admin.roles.destroy', $role) }}" method="POST">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="btn btn-danger">Eliminar</button>    
+                                </form>
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="">No hay ningún rol registrado</td>
+                            <td colspan="4">No hay ningún rol registrado</td>
                         </tr>
                     @endforelse
                 </tbody>

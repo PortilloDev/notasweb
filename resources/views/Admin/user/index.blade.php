@@ -3,11 +3,11 @@
 @section('title', 'Admin Panel')
 
 @section('content_header')
-    <h1>Panel de administración</h1>
+    <h1>Lista de usuarips</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    @livewire('admin-users')
 @stop
 
 @section('css')

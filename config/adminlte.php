@@ -257,6 +257,15 @@ return [
             'text'        => 'Roles',
             'route'         => 'admin.roles.index',
             'icon'        => 'fas fa-fw fa-users-cog',
+            'active' => ['admin/roles*']
+            //'label'       => 4,
+            //'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Users',
+            'route'         => 'admin.users.index',
+            'icon'        => 'fas fa-fw fa-users',
+            'active' => ['admin/users*']
             //'label'       => 4,
             //'label_color' => 'success',
         ],
@@ -309,21 +318,24 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'blog'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text'       => 'Blog',
+            'route'         => 'admin.posts.index',
+            'icon' => 'fa fa-book',
+            'active' => ['blog/posts*'],
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'       => 'Tags',
+            'route'         => 'admin.tags.index',
+            'icon' => 'fa fa-tags',
+            'active' => ['blog/tags*'],
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'       => 'Category',
+            'route'         => 'admin.categories.index',
+            'icon' => 'fa fa-paperclip',
+            'active' => ['blog/categories*'],
         ],
     ],
 
@@ -479,5 +491,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
