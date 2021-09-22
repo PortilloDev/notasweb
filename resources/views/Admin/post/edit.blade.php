@@ -4,15 +4,20 @@
 @section('title', 'Admin Panel')
 
 @section('content_header')
-    <h1>Listado de categorias</h1>
+    <h1>Editar post</h1>
 @stop
 
 @section('content')
-    @if(session('info'))
-    <div class="alert alert-primary" role="alert">
-        <strong>!Fantastico!</strong> {{ session('info') }}
+<div class="card">
+    <div class="card-body">
+        {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' => 'put' ]) !!}
+
+        @include('admin.post.partials.form')
+
+        {!! Form::submit('Actualizar Post', ['class' => 'btn btn-primary mt-2']) !!}
+        {!! Form::close() !!}
     </div>
-    @endif
+</div>
    
 @stop
 

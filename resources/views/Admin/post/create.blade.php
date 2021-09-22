@@ -4,22 +4,23 @@
 @section('title', 'Admin Panel')
 
 @section('content_header')
-    <h1>Listado de categorias</h1>
+    <h1>Crear post</h1>
 @stop
 
 @section('content')
-    @if(session('info'))
-    <div class="alert alert-primary" role="alert">
-        <strong>!Fantastico!</strong> {{ session('info') }}
+<div class="card">
+    <div class="card-body">
+        {!! Form::open(['route' => 'admin.posts.store']) !!}
+        
+        @include('admin.post.partials.form')
+        
+        {!! Form::submit('Crear Post', ['class' => 'btn btn-primary mt-2']) !!}
+        {!! Form::close() !!}
     </div>
-    @endif
+</div>
    
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
 @stop
