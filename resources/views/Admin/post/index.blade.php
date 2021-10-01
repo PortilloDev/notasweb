@@ -34,7 +34,7 @@
             <tbody>
                 @forelse ($posts as $post )
                     <tr>
-                        <td>{{ $tag->id }}</td>
+                        <td>{{ $post->id }}</td>
                         <td>{{ $post->user->name }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>{{ $post->name }}</td>

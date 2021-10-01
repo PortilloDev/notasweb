@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::pluck('name','id');
-        $users = User::pluck('name','id');
-        return view('admin.post.create', compact('categories', 'users'));
+        $categories = Category::all(['name','id']);
+        $users = User::all(['name','id']);
+        $tags = Tag::all(['id', 'name']);
+        return view('admin.post.create', compact('categories', 'users', 'tags'));
     }
 
     /**
@@ -41,16 +43,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+      
+        
         $request->validate([
             'name' => 'required|string',
+            'slug' => 'required|string',
+            'user_id' => 'required',
+            'category_id' => 'required',
+            'excerpt' => 'required|string',
+            'body' => 'required|string',
+            'status' => 'required|integer',
         ]);
+        $data = $request->except('_token', 'tags');
+        $archivo = $request->file('file');
+        if($archivo){
+            $nombre_imagen = $archivo->getClientOriginalName();
+            $archivo->move('image', $nombre_imagen);
+            $data['file'] = $nombre_imagen;
+        }
+        $post = Post::create($data);
 
-       /* $category = Category::create([
-            'name' =>$request->name
-        ]);
-
-        $category->permissions()->attach($request->permissions);*/
-        return redirect()->route('admin.posts.index')->with('info', 'Categoria creada correctamente');
+        $post->tags()->attach($request->tags);
+        return redirect()->route('admin.posts.index')->with('info', 'Post creado correctamente');
     }
 
     /**
@@ -72,8 +86,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        
-        return view('admin.post.edit', compact('category'));
+        $categories = Category::all(['name','id']);
+        $users = User::all(['name','id']);
+        $tags = Tag::all(['id', 'name']);
+        return view('admin.post.edit', compact('categories', 'users', 'tags','post'));
     }
 
     /**
@@ -87,13 +103,27 @@ class PostController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'permissions' => 'required',
+            'slug' => 'required|string',
+            'user_id' => 'required',
+            'category_id' => 'required',
+            'excerpt' => 'required|string',
+            'body' => 'required|string',
+            'status' => 'required|integer',
         ]);
-       /* $category->update([
-            'name' => $request->name,
-        ]);
-        $category->permissions()->sync($request->permissions);*/
+        $entrada = $request->all();
+         //IMAGE
+         $archivo = $request->file('file');
 
+         if($archivo){
+             $nombre_imagen = $archivo->getClientOriginalName();
+             $archivo->move('image', $nombre_imagen);
+             $entrada['file'] = $nombre_imagen;
+         }
+
+         $post->fill($entrada)->save();
+
+        //TAGS
+        $post->tags()->sync($request->get('tags'));
         return redirect()->route('admin.posts.edit', compact('post'));
     }
 

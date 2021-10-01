@@ -10,12 +10,14 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        {!! Form::open(['route' => 'admin.posts.store']) !!}
+        <form method="post" class="form form-horizontal" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
+             @csrf
+             @include('admin.post.partials.form')
         
-        @include('admin.post.partials.form')
-        
-        {!! Form::submit('Crear Post', ['class' => 'btn btn-primary mt-2']) !!}
-        {!! Form::close() !!}
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </div>
+        </form>
     </div>
 </div>
    
