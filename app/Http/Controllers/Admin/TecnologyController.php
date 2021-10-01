@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Tag;
+use App\Models\Tecnology;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class TecnologyController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('admin.tag.index', compact('tags'));
+        $tecnologies = Tecnology::all();
+        return view('admin.tecnology.index', compact('tecnologies'));
     }
 
     /**
@@ -27,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.create');
+        return view('admin.tecnology.create');
     }
 
     /**
@@ -43,12 +42,12 @@ class TagController extends Controller
             'slug' => 'required|string',
         ]);
 
-      Tag::create([
+      Tecnology::create([
             'name' =>$request->name,
             'slug' =>$request->slug,
         ]);
 
-        return redirect()->route('admin.tags.index')->with('info', 'Etiqueta creada correctamente');
+        return redirect()->route('admin.tecnologies.index')->with('info', 'Tecnología creada correctamente');
     }
 
     /**
@@ -57,9 +56,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show(Tecnology $tecnology)
     {
-        return view('admin.tag.show', compact('tag'));
+        return view('admin.tecnology.show', compact('tag'));
     }
 
     /**
@@ -68,10 +67,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit(Tecnology $tecnology)
     {
-        
-        return view('admin.tag.edit', compact('tag'));
+        return view('admin.tecnology.edit', compact('tecnology'));
     }
 
     /**
@@ -81,19 +79,19 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, Tecnology $tecnology)
     {
         $request->validate([
             'name' => 'required|string',
             'slug' => 'required|string',
         ]);
 
-        $tag->update([
+        $tecnology->update([
             'name' =>$request->name,
             'slug' =>$request->slug,
         ]);
 
-        return redirect()->route('admin.tags.edit', compact('tag'));
+        return redirect()->route('admin.tecnologies.edit', compact('tecnology'));
     }
 
     /**
@@ -102,9 +100,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tecnology $tecnology)
     {
-        $tag->delete();
-        return redirect()->route('admin.tags.index')->with('info','Tag eliminado correctamente');
+        $tecnology->delete();
+        return redirect()->route('admin.tecnologies.index')->with('info','Tecnología eliminada correctamente');
     }
 }

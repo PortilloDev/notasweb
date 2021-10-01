@@ -269,6 +269,7 @@ return [
             //'label'       => 4,
             //'label_color' => 'success',
         ],
+        /*
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -317,7 +318,7 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
+        ],*/
         ['header' => 'blog'],
         [
             'text'       => 'Blog',
@@ -336,6 +337,30 @@ return [
             'route'         => 'admin.categories.index',
             'icon' => 'fa fa-paperclip',
             'active' => ['blog/categories*'],
+        ],
+        [
+            'text'       => 'Experiences',
+            'route'         => 'admin.experiences.index',
+            'icon' => 'fa fa-check-square',
+            'active' => ['blog/experiences*'],
+        ],
+        [
+            'text'       => 'Tecnologies',
+            'route'         => 'admin.tecnologies.index',
+            'icon' => 'fa fa-desktop',
+            'active' => ['blog/tecnologies*'],
+        ],
+        [
+            'text'       => 'Skills',
+            'route'         => 'admin.skills.index',
+            'icon' => 'fa fa-key',
+            'active' => ['blog/skills*'],
+        ],
+        [
+            'text'       => 'Tools',
+            'route'         => 'admin.tools.index',
+            'icon' => 'fa fa-wrench',
+            'active' => ['blog/tools*'],
         ],
     ],
 

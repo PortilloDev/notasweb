@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Tag;
+use App\Models\Tool;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class ToolController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('admin.tag.index', compact('tags'));
+        $tools = Tool::all();
+        return view('admin.tool.index', compact('tools'));
     }
 
     /**
@@ -27,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.create');
+        return view('admin.tool.create');
     }
 
     /**
@@ -43,12 +42,12 @@ class TagController extends Controller
             'slug' => 'required|string',
         ]);
 
-      Tag::create([
+      Tool::create([
             'name' =>$request->name,
             'slug' =>$request->slug,
         ]);
 
-        return redirect()->route('admin.tags.index')->with('info', 'Etiqueta creada correctamente');
+        return redirect()->route('admin.tools.index')->with('info', 'Tool creado correctamente');
     }
 
     /**
@@ -57,9 +56,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show(Tool $tool)
     {
-        return view('admin.tag.show', compact('tag'));
+        return view('admin.tool.show', compact('tool'));
     }
 
     /**
@@ -68,10 +67,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit(Tool $tool)
     {
-        
-        return view('admin.tag.edit', compact('tag'));
+        return view('admin.tool.edit', compact('tool'));
     }
 
     /**
@@ -81,19 +79,19 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, Tool $tool)
     {
         $request->validate([
             'name' => 'required|string',
             'slug' => 'required|string',
         ]);
 
-        $tag->update([
+      $tool->update([
             'name' =>$request->name,
             'slug' =>$request->slug,
         ]);
 
-        return redirect()->route('admin.tags.edit', compact('tag'));
+        return redirect()->route('admin.tools.index', compact('tool'));
     }
 
     /**
@@ -102,9 +100,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tool $tool)
     {
-        $tag->delete();
-        return redirect()->route('admin.tags.index')->with('info','Tag eliminado correctamente');
+        $tool->delete();
+        return redirect()->route('admin.tools.index')->with('info','Tool eliminado correctamente');
     }
 }

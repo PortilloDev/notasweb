@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Tag;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class SkillController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $tags = Tag::all();
-        return view('admin.tag.index', compact('tags'));
+        $skills = Skill::all();
+        return view('admin.skill.index', compact('skills'));
     }
 
     /**
@@ -27,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('admin.tag.create');
+        return view('admin.skill.create');
     }
 
     /**
@@ -43,12 +42,12 @@ class TagController extends Controller
             'slug' => 'required|string',
         ]);
 
-      Tag::create([
+       Skill::create([
             'name' =>$request->name,
             'slug' =>$request->slug,
         ]);
 
-        return redirect()->route('admin.tags.index')->with('info', 'Etiqueta creada correctamente');
+        return redirect()->route('admin.skills.index')->with('info', 'Skill creado correctamente');
     }
 
     /**
@@ -57,9 +56,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show(Skill $skill)
     {
-        return view('admin.tag.show', compact('tag'));
+        return view('admin.skill.show', compact('skill'));
     }
 
     /**
@@ -68,10 +67,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit(Skill $skill)
     {
-        
-        return view('admin.tag.edit', compact('tag'));
+        return view('admin.skill.edit', compact('skill'));
     }
 
     /**
@@ -81,19 +79,19 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, Skill $skill)
     {
         $request->validate([
             'name' => 'required|string',
             'slug' => 'required|string',
         ]);
 
-        $tag->update([
+       $skill->update([
             'name' =>$request->name,
             'slug' =>$request->slug,
         ]);
 
-        return redirect()->route('admin.tags.edit', compact('tag'));
+        return redirect()->route('admin.skills.index',compact('skill'));
     }
 
     /**
@@ -102,9 +100,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(Skill $skill)
     {
-        $tag->delete();
-        return redirect()->route('admin.tags.index')->with('info','Tag eliminado correctamente');
+        $skill->delete();
+        return redirect()->route('admin.skills.index')->with('info','Skill eliminado correctamente');
     }
 }
