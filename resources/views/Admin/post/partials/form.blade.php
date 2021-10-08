@@ -63,8 +63,8 @@
     <label class="form-label">Estado</label>
     <select name="status" id="status" class="form-control">
         <option value=""> Selecciona estado publicación...</option>
+        <option value="2" {{ isset($post->status) ? (old('status', $post->status) == 2 ? 'selected' : '') : '' }}> Publicado</option>
         <option value="1" {{ isset($post->status) ? (old('status', $post->status) == 1 ? 'selected' : '') : '' }}> Borrador </option>
-        <option value="2" {{ isset($post->status) ? (old('status', $post->status) == 2 ? 'selected' : '') : '' }}> Publicado </option>
 
     </select>
 </div>

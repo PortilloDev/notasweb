@@ -34,7 +34,8 @@
                         <td>{{ $experience->id }}</td>
                         <td>{{ $experience->title }}</td>
                         <td>{{ $experience->slug }}</td>
-                        <td>{{ $experience->body }}</td>
+                      
+                        <td>{{  Str::limit($experience->body, 50)  }}</td>
                         <td width="10px">
                             <a class="btn btn-secondary" href="{{ route('admin.experiences.edit', $experience) }}">Edit</a>
                         </td>
