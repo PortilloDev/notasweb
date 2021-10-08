@@ -19,10 +19,11 @@ class PageController extends Controller
     }
 
     public function post($slug){
+        request()->session()->put('post', $slug);
 
         $post = Post::where('slug', $slug)->first();
-
-        return view('web.post', compact('post'));
+        $similar_posts = $this->_getSimilarPost();
+        return view('web.post', compact('post', 'similar_posts'));
     }
 
 
@@ -45,5 +46,20 @@ class PageController extends Controller
                 ->paginate(3);
         return view('web.posts', compact('posts'));
 
+    }
+
+    public function asside(){
+       
+        $similar_posts = $this->_getSimilarPost();
+        
+        return view('template.asside', compact('similar_posts'));
+    }
+
+
+    private function _getSimilarPost() 
+    {
+        $current_slug = request()->session()->get('post');
+        $other_posts = Post::where('status','2')->where('slug', '!=', $current_slug)->paginate(3);
+        return $other_posts;
     }
 }

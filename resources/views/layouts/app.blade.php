@@ -40,52 +40,15 @@
             @livewire('navigation-menu')
 
         <div id="app">
-            <nav class="navbar navbar-default navbar-static-top">
-                <div class="container mx-auto mt-5 text-center">
-                    <div class="navbar-header">
-                    </div>
-    
-                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="nav navbar-nav">
-                            <li><a href="{{ route('blog') }}">Blog</a></li>
-                        </ul>
-    
-                        <!-- Right Side Of Navbar -->
-                        <ul class="nav navbar-nav navbar-right">
-                            <!-- Authentication Links -->
-                            @guest
-                                <li><a href="{{ route('login') }}">Login</a></li>
-                                <li><a href="{{ route('register') }}">Register</a></li>
-                            @else
-                                <li><a href="#">Etiquetas</a></li>
-                                <li><a href="#">Categorías</a></li>
-                                <li><a href="#">Entradas</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        {{ Auth::user()->name }} <span class="caret"></span>
-                                    </a>
-    
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                                Logout
-                                            </a>
-    
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-    
+            @if(isset($post))
+                 @if(!isset($posts))
+                    {{ Breadcrumbs::render('post', $post) }}
+                 @else
+                    {{ Breadcrumbs::render() }}
+                 @endif
+            @else
+                {{ Breadcrumbs::render() }}
+            @endif
             @if (session('info'))
                 <div class="container">
                     <div class="row">
@@ -113,11 +76,21 @@
                     </div>
                 </div>
             @endif
-    
-            @yield('content')
+            <div class="container mx-auto p-4">
+                <div class="flex">
+                    <div class="w-4/5">
+                        @yield('content')
+                    </div>
+                    <div class="w-1/5">
+                        @include('template.asside')
+                    </div>
+
+                </div>
+            </div>    
     
         </div>
     
+        @include('template.footer')
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}"></script>
         @yield('scripts')

@@ -12,10 +12,7 @@
 
                 </div>
                 <div class="panel-body">
-
-                    @if($post->file)
                         <img src="{{Storage::url($post->image->url)}}" class="img-responsive">
-                    @endif
                     {!! $post->excerpt!!}
                    <hr>
                    {!! $post->body !!}
