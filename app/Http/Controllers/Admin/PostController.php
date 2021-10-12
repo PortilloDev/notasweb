@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Image;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -68,7 +67,7 @@ class PostController extends Controller
         $post = Post::create($data);
 
         $post->tags()->attach($request->tags);
-        $this->createImage($post, $data['file']);
+        ImageHelper::createImage($post, $data['file']);
         return redirect()->route('admin.posts.index')->with('info', 'Post creado correctamente');
     }
 
@@ -120,16 +119,13 @@ class PostController extends Controller
          $archivo = $request->file('file');
          if($archivo){
              $nombre_imagen = $archivo->getClientOriginalName();
-            // $archivo->move('image', $nombre_imagen);
-            // $entrada['file'] = $nombre_imagen;
-            // $file_name =str_replace(' ', '', $request->get('fullname'))."_".time().".".$archivo->guessClientExtension();
             Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
             $entrada['file'] =  $nombre_imagen;
          }
 
          $post->fill($entrada)->save();
          if($archivo){
-             $this->updateImage($post, $entrada['file']);
+            ImageHelper::updateImage($post, $entrada['file']);
          }
 
         //TAGS
@@ -149,28 +145,4 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index')->with('info','Post eliminado correctamente');
     }
 
-    public function createImage($post, $url)
-    {
-        $alias = $post->getMorphClass();
-        $image = new Image();
-        $image::create([
-            'url' => $url,
-            'imageable_id' => $post->id,
-            'imageable_type' => $alias,
-        ]);
-    }
-
-    public function updateImage($post, $url)
-    {
-        $alias = $post->getMorphClass();
-        $image = Image::where('imageable_id', $post->id)
-                        ->where('imageable_type', $alias)
-                        ->first();
-        if($image) {
-            $image->url = $url;
-            $image->save();
-        } else {
-            $this->createImage($post, $url);
-        }
-    }
 }

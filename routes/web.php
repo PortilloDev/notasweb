@@ -20,6 +20,7 @@ Route::get('blog', [PageController::class, 'blog'])->name('blog');
 Route::get('entrada/{slug}', [PageController::class, 'post'] )->name('post');
 Route::get('category/{slug}', [PageController::class, 'category'])->name('category');
 Route::get('etiqueta/{slug}', [PageController::class, 'tag'])->name('tag');
+Route::get('blog/documentacion', [PageController::class, 'documentation'])->name('documentation');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

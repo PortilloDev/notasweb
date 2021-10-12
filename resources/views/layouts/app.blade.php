@@ -41,10 +41,14 @@
 
         <div id="app">
             @if(isset($post))
-                 @if(!isset($posts))
-                    {{ Breadcrumbs::render('post', $post) }}
-                 @else
-                    {{ Breadcrumbs::render() }}
+                 @if(!isset($posts) && (!isset($isTag) && !isset($isCategory)))
+                          {{ Breadcrumbs::render('post', $post) }}
+                    @elseif(isset($isTag))
+                          {{ Breadcrumbs::render('tag', $tag) }}
+                    @elseif(isset($isCategory))
+                          {{ Breadcrumbs::render('category', $category) }}
+                    @else
+                          {{ Breadcrumbs::render() }}
                  @endif
             @else
                 {{ Breadcrumbs::render() }}

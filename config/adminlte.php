@@ -362,6 +362,12 @@ return [
             'icon' => 'fa fa-wrench',
             'active' => ['blog/tools*'],
         ],
+        [
+            'text'       => 'Documentation',
+            'route'         => 'admin.documentations.index',
+            'icon' => 'fa fa-address-book',
+            'active' => ['blog/documentation*'],
+        ],
     ],
 
     /*

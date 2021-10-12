@@ -12,7 +12,7 @@
         </div>
         <!-- Secondary Navbar items -->
         <div class="hidden md:flex items-center space-x-3 ">
-          <a href="" class="py-4 px-2 text-white  font-semibold hover:text-gray-100 transition duration-300 ">Documentación</a>
+          <a href="{{ route('documentation') }}" class="py-4 px-2 text-white  font-semibold hover:text-gray-100 transition duration-300 ">Documentación</a>
           <a href="" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Blog</a>
           <a href="" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Portfolio</a>
           <a href="" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Contacto</a>

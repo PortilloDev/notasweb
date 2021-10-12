@@ -4,7 +4,9 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Documentation;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,7 +17,7 @@ class PageController extends Controller
        
         $posts = Post::where('status','2')->paginate(3);
         
-        return view('web.posts', compact('posts'));
+        return view('web.blog.posts', compact('posts'));
     }
 
     public function post($slug){
@@ -23,31 +25,40 @@ class PageController extends Controller
 
         $post = Post::where('slug', $slug)->first();
         $similar_posts = $this->_getSimilarPost();
-        return view('web.post', compact('post', 'similar_posts'));
+        return view('web.blog.post', compact('post', 'similar_posts'));
     }
 
 
     public function category($slug){
 
-        $category = Category::where('slug', $slug)->pluck('id')->first();
-        $posts = Post::where('category_id', $category)
+        $category = Category::where('slug', $slug)->first();
+        $posts = Post::where('category_id', $category->id)
                 ->orderBy('id', 'DESC')->where('status', '2')
                 ->paginate(3);
-        return view('web.posts', compact('posts'));
+        $isCategory = true;
+          
+        return view('web.blog.posts', compact('posts','isCategory', 'category'));
 
     }
 
     public function tag($slug){
-
+        $tag = Tag::where('slug', $slug)->first();
         $posts = Post::whereHas('tags', function($query) use($slug){
             $query->where('slug', $slug);
 
         })->orderBy('id', 'DESC')->where('status', '2')
                 ->paginate(3);
-        return view('web.posts', compact('posts'));
+        $isTag = true;                      
+        return view('web.blog.posts', compact('posts','isTag','tag'));
 
     }
 
+    public function documentation(){
+        $documentations = Documentation::paginate(3);
+                             
+        return view('web.document.home', compact('documentations'));
+
+    }
     public function asside(){
        
         $similar_posts = $this->_getSimilarPost();

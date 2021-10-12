@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DocumentationController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\PostController;
@@ -25,3 +26,4 @@ Route::resource('experiences', ExperienceController::class)->names('experiences'
 Route::resource('skills', SkillController::class)->names('skills');
 Route::resource('tecnologies', TecnologyController::class)->names('tecnologies');
 Route::resource('tools', ToolController::class)->names('tools');
+Route::resource('documentations', DocumentationController::class)->names('documentations');
