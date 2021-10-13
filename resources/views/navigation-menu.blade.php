@@ -13,9 +13,9 @@
         <!-- Secondary Navbar items -->
         <div class="hidden md:flex items-center space-x-3 ">
           <a href="{{ route('documentation') }}" class="py-4 px-2 text-white  font-semibold hover:text-gray-100 transition duration-300 ">Documentación</a>
-          <a href="" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Blog</a>
-          <a href="" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Portfolio</a>
-          <a href="" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Contacto</a>
+          <a href="{{ route('blog') }}" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Blog</a>
+          <a href="https://ivan-portillo-perez.com" target="_blank" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Portfolio</a>
+          <a href="{{ route('contact') }}" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Contacto</a>
         </div>
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
@@ -40,10 +40,10 @@
     <div class="hidden mobile-menu">
       <ul class="">
         <li class="active"><a href="#" style="background-color:#9E579D " class="block text-sm px-2 py-4 text-black font-semibold"> <span >Home</span> </a></li>
-        <li><a href="#services" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Documentación</a></li>
-        <li><a href="#about" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Blog</a></li>
-        <li><a href="#contact" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Portfolio</a></li>
-        <li><a href="#contact" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Contacto</a></li>
+        <li><a href="{{ route('documentation') }}" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Documentación</a></li>
+        <li><a href="{{ route('blog') }}" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Blog</a></li>
+        <li><a href="https://ivan-portillo-perez.com" target="_blank" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Portfolio</a></li>
+        <li><a href="{{ route('contact') }}" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Contacto</a></li>
       </ul>
     </div>
     <script>

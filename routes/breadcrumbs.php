@@ -24,4 +24,8 @@ Breadcrumbs::for('documentation', function ($trail) {
     $trail->parent('blog');
     $trail->push('Documentación', route('documentation'));
 });
+Breadcrumbs::for('contact', function ($trail) {
+    $trail->parent('blog');
+    $trail->push('Contacto', route('contact'));
+});
 

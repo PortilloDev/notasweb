@@ -1,8 +1,8 @@
 
 @if(isset($similar_posts))
         <div class="container">
-            <div class="col-md-8 col-md-offset-2">
-                <h1>Lista de Posts</h1>
+            <div class="">
+                <h1>Entradas similares</h1>
                     @foreach ($similar_posts as $post )
                     <div class="panel panel-default">
                         <div class="panel-heading">
