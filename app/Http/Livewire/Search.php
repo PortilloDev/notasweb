@@ -13,10 +13,9 @@ class Search extends Component
     {
         return view('livewire.search');
     }
-     //propiedades computadas
-     public function getResultsProperty()
-     {
+    //propiedades computadas
+    public function getResultsProperty()
+    {
         return Post::where('name', 'LIKE', '%' . $this->search . '%')->where('status', '2')->take(8)->get();
-          
-     }
+    }
 }
