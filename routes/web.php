@@ -4,6 +4,7 @@ use App\Http\Controllers\web\ContactController;
 use App\Http\Controllers\web\PageController;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,8 @@ Route::get('etiqueta/{slug}', [PageController::class, 'tag'])->name('tag');
 Route::get('blog/documentacion', [PageController::class, 'documentation'])->name('documentation');
 Route::get('blog/contacto', [ContactController::class, 'index'])->name('contact');
 Route::post('blog/contacto/enviado', [ContactController::class, 'sent'])->name('contact.sent');
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

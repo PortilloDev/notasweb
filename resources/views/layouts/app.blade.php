@@ -82,22 +82,6 @@
                     </div>
                 </div>
             @endif
-
-            @if (count($errors))
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-2 text-center mt-10">
-                            @foreach ($errors->all() as $error)
-                                <div class="alert alert-warning text-center">
-                                    <ul>
-                                        <li>{{ $error }}</li>
-                                    </ul>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            @endif
             <div class="container mx-auto p-4">
                 <div class="flex">
                     <div class="w-4/5">
