@@ -4,14 +4,14 @@
         <div class="flex space-x-7">
           <div>
             <!-- Website Logo -->
-            <a href="#" class="flex items-center py-4 px-2">
+            <a href="{{ route('blog') }}" class="flex items-center py-4 px-2">
               <img src="{{ asset('/storage/blog/image-nav.png') }}" alt="Logo" class="h-32 w-32 mr-2">
               <span class="font-semibold text-white text-5xl">Notas web</span>
             </a>
           </div>
         </div>
         <!-- Secondary Navbar items -->
-        <div class="hidden md:flex items-center space-x-3 ">
+        <div class="hidden md:flex items-center space-x-3 text-2xl ">
           <a href="{{ route('documentation') }}" class="py-4 px-2 text-white  font-semibold hover:text-gray-100 transition duration-300 ">Documentación</a>
           <a href="{{ route('blog') }}" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Blog</a>
           <a href="https://ivan-portillo-perez.com" target="_blank" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Portfolio</a>
@@ -37,9 +37,9 @@
       </div>
     </div>
     <!-- mobile menu -->
-    <div class="hidden mobile-menu">
+    <div class="hidden mobile-menu text-xl">
       <ul class="">
-        <li class="active"><a href="#" style="background-color:#9E579D " class="block text-sm px-2 py-4 text-black font-semibold"> <span >Home</span> </a></li>
+        <li class="active"><a href="{{ route('blog') }}" style="background-color:#9E579D " class="block text-sm px-2 py-4 text-black font-semibold"> <span >Home</span> </a></li>
         <li><a href="{{ route('documentation') }}" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Documentación</a></li>
         <li><a href="{{ route('blog') }}" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Blog</a></li>
         <li><a href="https://ivan-portillo-perez.com" target="_blank" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Portfolio</a></li>

@@ -84,11 +84,11 @@
             @endif
             <div class="container mx-auto p-4">
                 <div class="flex">
-                    <div class="w-4/5">
+                    <div class="">
                         @yield('content')
                     </div>
-                    <div class="w-1/5">
-                        @include('template.asside')
+                    <div class="">
+                    {{-- @include('template.asside') --}}    
                     </div>
 
                 </div>
