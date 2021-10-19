@@ -10,7 +10,19 @@ php artisan adminlte:install
 php artisan vendor:publish --tag=jetstream-views
 
 #administrar permisos
-composer require spatie/laravel-permission
+- composer require spatie/laravel-permission
+- 'providers' => [
+    // ...
+    Spatie\Permission\PermissionServiceProvider::class,
+];
+-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+-php artisan optimize:clear
+-php artisan config:clear
+-php artisan migrate
+-php artisan adminlte:install --only=main_views
+
+#laravel collective
+composer require laravelcollective/html
 
 //Configuraciones
 

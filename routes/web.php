@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\web\ContactController;
+use App\Http\Controllers\web\PageController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'blog');
+
+Route::get('blog', [PageController::class, 'blog'])->name('blog');
+Route::get('entrada/{slug}', [PageController::class, 'post'] )->name('post');
+Route::get('category/{slug}', [PageController::class, 'category'])->name('category');
+Route::get('etiqueta/{slug}', [PageController::class, 'tag'])->name('tag');
+Route::get('blog/documentacion', [PageController::class, 'documentation'])->name('documentation');
+Route::get('blog/contacto', [ContactController::class, 'index'])->name('contact');
+Route::post('blog/contacto/enviado', [ContactController::class, 'sent'])->name('contact.sent');
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');

@@ -5,17 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Str;
 class Post extends Model
 {
     use HasFactory;
     
-    const DRAFT = 1;
     const PUBLISHED = 2;
+    const DRAFT = 1;
 
 
     protected $fillable = [
         'user_id', 'category_id', 'name', 'slug', 'excerpt', 'body', 'status', 'file'
     ];
+
+    public function setSlugAttribute($value)
+    {
+        $this->attributes['slug'] = Str::slug($value);
+    }
 
     public function user() {
         return $this->belongsTo('App\Models\User');
