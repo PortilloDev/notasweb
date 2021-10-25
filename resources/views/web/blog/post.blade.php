@@ -2,10 +2,9 @@
 
 @section('content')
     <div class="container">
-        <section class="bg-cover" style="background-image: url({{ Storage::url($post->image->url) }})">
+        <section class="bg-cover w-full h-auto" style="background-image: url({{ Storage::url($post->image->url) }})">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">
                 <div class="w-full md:w-3/4 lg:w-1/2">
-
                 </div>
             </div>
         </section>
@@ -39,6 +38,7 @@
                     </div>
                     <hr>
                     Etiquetas
+                    <i class="fas fa-tags"></i>
                     @foreach ($post->tags as $tag)
                         <a href="{{ route('tag', $tag->slug) }}">
                             {{ $tag->name }}

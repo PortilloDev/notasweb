@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\web;
 
+use App\Helpers\LogHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Documentation;
@@ -15,20 +16,20 @@ class PageController extends Controller
 
     public function blog()
     {
-
+        $tags = Tag::all();
         $last_post = Post::where('status', '2')->latest()->first();
         $posts = Post::where('status', '2')
             ->where('id', '!=', $last_post->id)
             ->paginate(3);
 
-        return view('web.blog.posts', compact('posts', $last_post));
+        return view('web.blog.posts', compact('posts', 'last_post', 'tags'));
     }
 
     public function post($slug)
     {
         request()->session()->put('post', $slug);
-
         $post = Post::where('slug', $slug)->first();
+        LogHelper::register_view($post);
         $similar_posts = $this->_getSimilarPost();
         return view('web.blog.post', compact('post', 'similar_posts'));
     }
@@ -60,7 +61,6 @@ class PageController extends Controller
     public function documentation()
     {
         $documentations = Documentation::paginate(3);
-
         return view('web.document.home', compact('documentations'));
     }
     public function asside()
