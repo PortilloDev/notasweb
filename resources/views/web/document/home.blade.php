@@ -11,24 +11,28 @@
             </div>
             <hr>
             @foreach ($documentations as $documentation)
-                <div class="rounded overflow-hidden shadow-lg mb-4">
-                    <article>
-                        <figure>
-                            @if ($documentation->image)
-                                <div class="flex justify-center mt-5">
-                                    <img src="{{ Storage::url($documentation->image) }}"
-                                        class="rounded-xl w-1/2 h-1/2 object-cover img-responsive">
+                <div class="card mb-2 mt-2 shadow-lg">
+                    <div class="card-block shadow-lg p-4">
+                        <h1 class="h2-responsive mb-2 p-2"> {{ $documentation->title }} </h1>
+                        <div class="section mt-1 mx-3 mx-md-5 mx-lg-1 shadow-lg" id="sectionArticles">
+                            <div class="row">
+                                <div class="col-md-5">
+                                        <div class="view overlay hm-white-slight mb-1">
+                                            <img src="{{ Storage::url($documentation->image) }}"
+                                                class="img-fluid" alt="" title="{{ $documentation->title }} }}">
+                                            <div class="mask waves-effect waves-light"></div>
+                                        </div>
+                                    </a>
                                 </div>
-                            @endif
-                        </figure>
-                        <header class="mt-4">
-                            <h1 class="text-center text-xl text-gray-700 mb-4"> {{ $documentation->title }}</h1>
-                            <div class="p-6">
-                                <p class="text-base text-gray-500">{!! $documentation->description !!} <a href="{{ $documentation->url }}"
-                                target="_blank" class="pull-right">Leer más</a> </p>
+                                <div class="col-md-7">
+                                    <h4 class="h4-responsive mb-1 mt-1">
+                                        <p class="text-base text-gray-500 p-4">{!! $documentation->description !!} <a href="{{ $documentation->url }}"
+                                            target="_blank" class="pull-right">Leer más</a> </p>
+                                    </h4>
+                                </div>
                             </div>
-                        </header>
-                    </article>
+                        </div>
+                    </div>
                 </div>
             @endforeach
             {{ $documentations->render() }}

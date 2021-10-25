@@ -17,6 +17,11 @@ class Tag extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
+    public function getScoreAttribute() 
+    {
+        return $this->posts->where('status', '2')->count();
+    }
+
     public function posts() {
         return $this->belongsToMany('App\Models\Post');
     }
