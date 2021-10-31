@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => env('APP_NAME', 'AdminLTE 3'),
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => env('ADMINLTE_DASHBOARD_URL', 'home'),
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
