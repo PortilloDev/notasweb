@@ -71,9 +71,4 @@
     </nav>
 
 </body>
-
-@php
-echo phpinfo();
-@endphp
-
 </html>
