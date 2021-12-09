@@ -16,11 +16,14 @@ class PageController extends Controller
 
     public function blog()
     {
+        $posts = null;
         $tags = Tag::all();
         $last_post = Post::where('status', '2')->latest()->first();
-        $posts = Post::where('status', '2')
-            ->where('id', '!=', $last_post->id)
-            ->paginate(3);
+        if ( $last_post != null) {
+            $posts = Post::where('status', '2')
+                ->where('id', '!=', $last_post->id)
+                ->paginate(3);
+        }
 
         return view('web.blog.posts', compact('posts', 'last_post', 'tags'));
     }
