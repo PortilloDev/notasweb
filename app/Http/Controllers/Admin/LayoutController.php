@@ -4,25 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\Tag;
-use App\Models\User;
+use App\Models\Layout;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Storage;
 
-class PostController extends Controller
+class LayoutController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('admin.post.index', compact('posts'));
+        $layouts = Layout::all();
+        return view('admin.layout.index', compact('layouts'));
     }
 
     /**
@@ -32,10 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all(['name','id']);
-        $users = User::all(['name','id']);
-        $tags = Tag::all(['id', 'name']);
-        return view('admin.post.create', compact('categories', 'users', 'tags'));
+        return view('admin.layout.create');
     }
 
     /**
@@ -46,16 +39,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      
-        
         $request->validate([
-            'name' => 'required|string',
-            'slug' => 'required|string',
-            'user_id' => 'required',
-            'category_id' => 'required',
+            'h1' => 'required|string',
+            'paragraph' => 'required|string',
             'excerpt' => 'required|string',
-            'body' => 'required|string',
-            'status' => 'required|integer',
+            'description' => 'required|string',
         ]);
         $data = $request->except('_token', 'tags');
         $archivo = $request->file('file');
@@ -64,11 +52,10 @@ class PostController extends Controller
             Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
             $data['file'] = $nombre_imagen;
         }
-        $post = Post::create($data);
+        $layout = Layout::create($data);
 
-        $post->tags()->attach($request->tags);
-        ImageHelper::createImage($post, $data['file']);
-        return redirect()->route('admin.posts.index')->with('info', 'Post creado correctamente');
+        ImageHelper::createImage($layout, $data['file']);
+        return redirect()->route('admin.layouts.index')->with('info', 'layout creado correctamente');
     }
 
     /**
@@ -77,9 +64,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Layout $layout)
     {
-        return view('admin.post.show', compact('post'));
+        return view('admin.layout.show', compact('layout'));
     }
 
     /**
@@ -88,12 +75,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Layout $layout)
     {
-        $categories = Category::all(['name','id']);
-        $users = User::all(['name','id']);
-        $tags = Tag::all(['id', 'name']);
-        return view('admin.post.edit', compact('categories', 'users', 'tags','post'));
+        return view('admin.layout.edit', compact('layout'));
     }
 
     /**
@@ -103,16 +87,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Layout $layout)
     {
         $request->validate([
-            'name' => 'required|string',
-            'slug' => 'required|string',
-            'user_id' => 'required',
-            'category_id' => 'required',
+            'h1' => 'required|string',
+            'paragraph' => 'required|string',
             'excerpt' => 'required|string',
-            'body' => 'required|string',
-            'status' => 'required|integer',
+            'description' => 'required|string',
         ]);
         $entrada = $request->all();
         //IMAGE
@@ -123,14 +104,11 @@ class PostController extends Controller
         $entrada['file'] =  $nombre_imagen;
         }
 
-        $post->fill($entrada)->save();
+        $layout->fill($entrada)->save();
         if($archivo){
-        ImageHelper::updateImage($post, $entrada['file']);
+        ImageHelper::updateImage($layout, $entrada['file']);
         }
-
-        //TAGS
-        $post->tags()->sync($request->get('tags'));
-        return redirect()->route('admin.posts.edit', compact('post'));
+        return redirect()->route('admin.layouts.edit', compact('layout'));
     }
 
     /**
@@ -139,10 +117,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Layout $layout)
     {
-        $post->delete();
-        return redirect()->route('admin.posts.index')->with('info','Post eliminado correctamente');
+        $layout->delete();
+        return redirect()->route('admin.layouts.index')->with('info','Layout eliminado correctamente');
     }
-
 }
