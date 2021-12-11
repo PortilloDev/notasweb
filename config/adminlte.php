@@ -269,6 +269,12 @@ return [
             //'label'       => 4,
             //'label_color' => 'success',
         ],
+        [
+            'text' => 'Custom home',
+            'route'  => 'admin.layouts.index',
+            'icon'        => 'fas fa-fw fa-file-code',
+            'active' => ['admin/layouts*']
+        ],
         /*
         ['header' => 'account_settings'],
         [
