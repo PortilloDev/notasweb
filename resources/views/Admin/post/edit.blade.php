@@ -18,7 +18,7 @@
         {!! Form::close() !!}
     </div>
 </div>
-   
+
 @stop
 
 @section('css')

@@ -43,9 +43,9 @@ class LayoutController extends Controller
             'h1' => 'required|string',
             'paragraph' => 'required|string',
             'excerpt' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'required',
         ]);
-        $data = $request->except('_token', 'tags');
+        $data = $request->except('_token');
         $archivo = $request->file('file');
         if($archivo){
             $nombre_imagen = $archivo->getClientOriginalName();
@@ -54,7 +54,9 @@ class LayoutController extends Controller
         }
         $layout = Layout::create($data);
 
-        ImageHelper::createImage($layout, $data['file']);
+        if($archivo){
+            ImageHelper::createImage($layout, $data['file']);
+        }
         return redirect()->route('admin.layouts.index')->with('info', 'layout creado correctamente');
     }
 

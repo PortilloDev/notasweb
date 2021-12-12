@@ -1,19 +1,20 @@
+@inject('text_layout', 'App\Helpers\LayoutHelper' )
 @extends('layouts.app')
+@php
+$texts = $text_layout::getHeaderText();
+@endphp
 
 @section('content')
     <div class="container-fluid">
         <div class="card mb-2 mt-2 shadow-lg">
-            <div class="card-block pb-0 text-center shadow-lg">
+            <div class="card-block pb-0 text-left shadow-lg p-4">
                 <p class="text-left text-2xl p-2">
-                    Notas Web, desea compartir conocimiento y aportar un granito de arena a la comunidad del desarrollo web
-                    y
-                    programción en general.
+                    {!! $texts->excerpt !!}
                 </p>
-
+            </div>
+            <div class="card-block pb-0 text-left shadow-lg p-4">
                 <p class="text-left text-2xl p-2">
-                    Compartiendo desde pequeños tips para tú día a día, pasando por tutoriales de como realizo algunos
-                    procesos
-                    de interes, hasta compartir problemas y soluciones de mi día a día como desarrollador.
+                    {!! $texts->description !!}
                 </p>
             </div>
         </div>
