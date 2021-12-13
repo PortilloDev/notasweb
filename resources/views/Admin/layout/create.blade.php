@@ -10,7 +10,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form method="layout" class="form form-horizontal" action="{{ route('admin.layouts.store') }}" enctype="multipart/form-data">
+        <form method="post" class="form form-horizontal" action="{{ route('admin.layouts.store') }}" enctype="multipart/form-data">
             @csrf
             @include('admin.layout.partials.form')
         

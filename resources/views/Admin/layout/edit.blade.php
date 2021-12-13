@@ -12,13 +12,13 @@
     <div class="card-body">
         {!! Form::model($layout, ['route' => ['admin.layouts.update', $layout], 'method' => 'put' ]) !!}
 
-        @include('admin.post.partials.form')
+        @include('admin.layout.partials.form')
 
         {!! Form::submit('Actualizar layout', ['class' => 'btn btn-primary mt-2']) !!}
         {!! Form::close() !!}
     </div>
 </div>
-   
+
 @stop
 
 @section('css')
