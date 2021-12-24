@@ -1,5 +1,5 @@
 
- <div class="form-group">
+<div class="form-group">
     <label class="form-label">H1</label>
     <input type="text" name="h1" class="form-control" value="{{ old('h1', isset($layout->h1) ? $layout->h1 : '') }}"/>
 </div>  

@@ -43,10 +43,11 @@ class LayoutController extends Controller
             'h1' => 'required|string',
             'paragraph' => 'required|string',
             'excerpt' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'required',
         ]);
-        $data = $request->except('_token', 'tags');
-        $archivo = $request->file('file');
+        //dd($request->all());
+        $data = $request->except('_token');
+        $archivo =  $request->file('file');
         if($archivo){
             $nombre_imagen = $archivo->getClientOriginalName();
             Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
@@ -54,7 +55,9 @@ class LayoutController extends Controller
         }
         $layout = Layout::create($data);
 
-        ImageHelper::createImage($layout, $data['file']);
+        if($archivo){
+            ImageHelper::createImage($layout, $data['file']);
+        }
         return redirect()->route('admin.layouts.index')->with('info', 'layout creado correctamente');
     }
 
@@ -101,13 +104,21 @@ class LayoutController extends Controller
         if($archivo){
             $nombre_imagen = $archivo->getClientOriginalName();
         Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
-        $entrada['file'] =  $nombre_imagen;
-        }
+        $layout->update([
+            'file' => $nombre_imagen,
+        ]);
 
-        $layout->fill($entrada)->save();
-        if($archivo){
-        ImageHelper::updateImage($layout, $entrada['file']);
+        ImageHelper::updateImage($layout, $nombre_imagen);
         }
+        
+        $layout->update([
+            'h1' => $request->get('h1'),
+            'paragraph' => $request->get('paragraph'),
+            'excerpt' => $request->get('excerpt'),
+            'description' => $request->get('description'),
+        ]);
+        $layout->fill($entrada)->save();
+        
         return redirect()->route('admin.layouts.edit', compact('layout'));
     }
 

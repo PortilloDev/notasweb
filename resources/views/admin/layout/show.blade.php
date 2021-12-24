@@ -13,7 +13,6 @@
         <strong>!Fantastico!</strong> {{ session('info') }}
     </div>
     @endif
-   
 @stop
 
 @section('css')

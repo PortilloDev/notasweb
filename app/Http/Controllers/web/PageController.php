@@ -18,14 +18,14 @@ class PageController extends Controller
     {
         $posts = null;
         $tags = Tag::all();
-        $last_post = Post::where('status', '2')->latest()->first();
-        if ( $last_post != null) {
-            $posts = Post::where('status', '2')
-                ->where('id', '!=', $last_post->id)
-                ->paginate(3);
-        }
+       // $last_post = Post::where('status', '2')->latest()->first();
+        //if ( $last_post != null) {
+       // }
+        $posts = Post::where('status', '2')
+            ->latest()
+            ->paginate(4);
 
-        return view('web.blog.posts', compact('posts', 'last_post', 'tags'));
+        return view('web.blog.posts', compact('posts', 'tags'));
     }
 
     public function post($slug)
@@ -65,6 +65,11 @@ class PageController extends Controller
     {
         $documentations = Documentation::paginate(3);
         return view('web.document.home', compact('documentations'));
+    }
+
+    public function politica() 
+    {
+        return view('web.politicas.politicas');
     }
     public function asside()
     {

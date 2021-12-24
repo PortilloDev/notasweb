@@ -28,4 +28,8 @@ Breadcrumbs::for('contact', function ($trail) {
     $trail->parent('blog');
     $trail->push('Contacto', route('contact'));
 });
+Breadcrumbs::for('politica', function ($trail) {
+    $trail->parent('blog');
+    $trail->push('politica-privacidad', route('politica'));
+});
 

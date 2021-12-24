@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
@@ -41,8 +41,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+       // dd($request->all());
+        $pass_1 = $request->get('password') != null ? $request->get('password') : false ;
+        $pass_2 = $request->get('password2') != null  ? $request->get('password2') : false ;
+
+        if ($pass_1 && $pass_2 ) {
+                if($pass_1 === $pass_2) {
+                    $user->update([
+                        'password' => Hash::make($pass_1),
+                    ]);
+                } else {
+                    return redirect()->route('admin.users.edit', compact('user'))->with('error', 'Las contraseñas no coinciden');
+                }
+        }
         $user->roles()->sync($request->roles);
-        return redirect()->route('admin.users.edit', compact('user'))->with('info', 'Rol actualizado correctamente');
+        return redirect()->route('admin.users.edit', compact('user'))->with('info', 'Usuario actualizado correctamente');
     }
 
 }

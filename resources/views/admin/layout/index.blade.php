@@ -32,11 +32,11 @@
             <tbody>
                 @forelse ($layouts as $layout )
                     <tr>
-                        <td>{{ $layoutlayout->id }}</td>
+                        <td>{{ $layout->id }}</td>
                         <td>{{ $layout->h1 }}</td>
                         <td>{{ $layout->paragraph }}</td>
-                        <td>{{ $layout->excerpt }}</td>
-                        <td>{{ $layout->description }}</td>
+                        <td>{!! $layout->excerpt !!}</td>
+                        <td>{!! $layout->description !!}</td>
                         <td width="10px">
                             <a class="btn btn-secondary" href="{{ route('admin.layouts.edit', $layout) }}">Edit</a>
                         </td>

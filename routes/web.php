@@ -25,6 +25,7 @@ Route::get('etiqueta/{slug}', [PageController::class, 'tag'])->name('tag');
 Route::get('blog/documentacion', [PageController::class, 'documentation'])->name('documentation');
 Route::get('blog/contacto', [ContactController::class, 'index'])->name('contact');
 Route::post('blog/contacto/enviado', [ContactController::class, 'sent'])->name('contact.sent');
+Route::get('blog/politica-privacidad', [PageController::class, 'politica'])->name('politica');
 
 
 

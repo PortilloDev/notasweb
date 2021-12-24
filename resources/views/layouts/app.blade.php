@@ -1,3 +1,5 @@
+@inject('text_layout', 'App\Helpers\LayoutHelper' )
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -60,13 +62,14 @@
             @else
                 {{ Breadcrumbs::render() }}
             @endif
+            @php
+                $texts = $text_layout::getHeaderText();
+            @endphp
             <section class="bg-cover" style="background-image: url({{ asset('storage/blog/home.jpg') }})">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">
                     <div class="w-full md:w-3/4 lg:w-1/2">
-                        <h1 class="text-white font-fold text-4xl">Blog sobre desarrollo y programación Web</h1>
-                        <p class="text-white text-lg mt-2 mb-4">Proyecto construido con la tecnología TALL. Tailwind,
-                            alpine, laravel
-                            y livewire</p>
+                        <h1 class="text-white font-fold text-5xl">{{ $texts->h1 }}</h1>
+                        <p class="text-white text-lg mt-2 mb-4">{{ $texts->paragraph }}</p>
                         @livewire('search')
                     </div>
                 </div>

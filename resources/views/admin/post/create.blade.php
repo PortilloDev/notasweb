@@ -11,8 +11,8 @@
 <div class="card">
     <div class="card-body">
         <form method="post" class="form form-horizontal" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
-             @csrf
-             @include('admin.post.partials.form')
+            @csrf
+            @include('admin.post.partials.form')
         
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-primary"/>
@@ -20,7 +20,7 @@
         </form>
     </div>
 </div>
-   
+
 @stop
 
 @section('css')
