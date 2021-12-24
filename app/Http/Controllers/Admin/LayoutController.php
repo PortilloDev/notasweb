@@ -45,8 +45,9 @@ class LayoutController extends Controller
             'excerpt' => 'required|string',
             'description' => 'required',
         ]);
+        //dd($request->all());
         $data = $request->except('_token');
-        $archivo = $request->file('file');
+        $archivo =  $request->file('file');
         if($archivo){
             $nombre_imagen = $archivo->getClientOriginalName();
             Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
@@ -103,13 +104,21 @@ class LayoutController extends Controller
         if($archivo){
             $nombre_imagen = $archivo->getClientOriginalName();
         Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
-        $entrada['file'] =  $nombre_imagen;
-        }
+        $layout->update([
+            'file' => $nombre_imagen,
+        ]);
 
-        $layout->fill($entrada)->save();
-        if($archivo){
-        ImageHelper::updateImage($layout, $entrada['file']);
+        ImageHelper::updateImage($layout, $nombre_imagen);
         }
+        
+        $layout->update([
+            'h1' => $request->get('h1'),
+            'paragraph' => $request->get('paragraph'),
+            'excerpt' => $request->get('excerpt'),
+            'description' => $request->get('description'),
+        ]);
+        $layout->fill($entrada)->save();
+        
         return redirect()->route('admin.layouts.edit', compact('layout'));
     }
 

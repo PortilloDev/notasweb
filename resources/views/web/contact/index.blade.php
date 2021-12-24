@@ -99,7 +99,12 @@
                     <div class="w-full px-3">
                         <label class="inline-flex items-center">
                             <input name="legal" type="checkbox" class="form-checkbox" >
-                            <span class="ml-2">He leído y acepto el Aviso Legal y la Política de privacidad</span>
+                            <a href="{{route('politica')  }}">
+                                    <span class="ml-2">
+                                    He leído y acepto el Aviso Legal y la Política de privacidad
+                                </span>
+
+                                </a>
                         </label>
                         @error('legal')
                             <br>

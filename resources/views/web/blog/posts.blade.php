@@ -6,44 +6,34 @@ $texts = $text_layout::getHeaderText();
 
 @section('content')
     <div class="container-fluid">
-        <div class="card mb-2 mt-2 shadow-lg">
-            <div class="card-block pb-0 text-left shadow-lg p-4">
+        <div class="">
+            <div class="card-block pb-0 text-left  p-2" style="margin-bottom: -30px">
                 <p class="text-left text-2xl p-2">
                     {!! $texts->excerpt !!}
                 </p>
             </div>
-            <div class="card-block pb-0 text-left shadow-lg p-4">
+            <div class="pb-0 text-left p-2">
                 <p class="text-left text-2xl p-2">
                     {!! $texts->description !!}
                 </p>
             </div>
         </div>
-        @if(isset($last_post))
-            <div class="card mb-2 mt-2 shadow-lg">
-                <div class="card-block shadow-lg p-4">
-                    <h1 class="h2-responsive mb-2 p-2"> Entrada reciente</h1>
-                    <x-card-post :post="$last_post" />
+
+        <hr>
+        <section class="mb-10 mx-auto max-w-screen-xl px-4 xl:px-0">
+                <div class="mt-6 mb-4 font-semibold text-center">
+                    <h3>Entradas en el blog</h3>
                 </div>
-            </div>
-        @endif
-        <div>
-            <div class="row">
-                <div class="col-md-12 ">
-                    <div class="card mb-2 shadow-lg">
-                        <div class="card-block shadow-lg p-4">
-                            <h1 class="h2-responsive mb-2 p-2"> Otros Articulos</h1>
-                            <div class="flex flex-col justify-center h-screen">
-                            @if(isset($posts))
-                                @foreach ($posts as $post)
-                                    <x-card-post :post="$post" />
-                                    <hr class="mb-2">
-                                @endforeach
-                            @endif
-                            </div>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mx-auto max-w-screen-xl ">
+                    @if(isset($posts))
+                        @foreach ($posts as $post)
+                            <x-card-post :post="$post" />
+                        @endforeach
+                        @endif
                 </div>
-            </div>
-        </div>
+                <div class="mt-4">
+                    {{ $posts->render() }}
+                </div>
+        </section>
     </div>
 @endsection

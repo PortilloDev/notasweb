@@ -15,7 +15,7 @@
                 <i class="fas fa-tags"></i>
                 @foreach ($post->tags as $tag)
                     <a href="{{ route('tag', $tag->slug) }}">
-                        {{ $tag->name }}
+                        {{ $tag->name.',' }}
                     </a>
                 @endforeach
             </p>

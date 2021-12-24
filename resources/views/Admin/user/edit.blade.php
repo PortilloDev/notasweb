@@ -17,17 +17,36 @@
         <p class="form-control">{{ $user->name }}</p>
         <h1 class="h5">Lista de Roles</h1>
         {!! Form::model($user,['route' => ['admin.users.update', $user], 'method' => 'put']) !!}
-
+        <div class="form-group">
+            {!! Form::label('password', 'Password:') !!}
+            {!! Form::text('password',null, ['class' => 'form-control', 'placeholder' => 'Escriba una contraseña']) !!}
+            @error('password')
+                <small class="text-danger">
+                    <strong>{{ $message }} </strong>
+                </small>
+                <br>
+            @enderror
+        </div>   
+        <div class="form-group">
+            {!! Form::label('password2', 'Repita la Password:') !!}
+            {!! Form::text('password2',null, ['class' => 'form-control', 'placeholder' => 'Repita la contraseña']) !!}
+            @error('password2')
+                <small class="text-danger">
+                    <strong>{{ $message }} </strong>
+                </small>
+                <br>
+            @enderror
+        </div>
             @foreach ($roles as $role )
-               <div>
+                <div>
                     <label >
                         {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'mr-1']) !!}
                         {{ $role->name }}
                     </label>
-               </div>
+                </div>
             @endforeach
 
-            {!! Form::submit('Asginar rol', ['class' => 'btn btn-primary mt-2']) !!}
+            {!! Form::submit('Actualizar', ['class' => 'btn btn-primary mt-2']) !!}
         {!! Form::close() !!}
     </div>
 @stop
