@@ -40,7 +40,12 @@
                         <td>{{ $post->name }}</td>
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->excerpt }}</td>
-                        <td>{{ $post->status }}</td>
+                        @if( $post->status == 1)
+                        <td>{{ __('Borrador') }}</td>
+                        @else
+                        <td>{{ __('Publicado')}}</td>
+                        @endif
+                        
                         <td width="10px">
                             <a class="btn btn-secondary" href="{{ route('admin.posts.edit', $post) }}">Edit</a>
                         </td>

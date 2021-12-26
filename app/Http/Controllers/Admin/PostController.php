@@ -130,7 +130,7 @@ class PostController extends Controller
 
         //TAGS
         $post->tags()->sync($request->get('tags'));
-        return redirect()->route('admin.posts.edit', compact('post'));
+        return redirect()->route('admin.posts.index')->with('info','Post actualizado correctamente');
     }
 
     /**
