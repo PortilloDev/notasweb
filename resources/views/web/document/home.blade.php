@@ -7,9 +7,37 @@
                 <h1>Documentación oficial</h1>
             </div>
             <div>
-                <p> Enlaces a la documentación oficial de los distintas librerias o tecnologías que uso. </p>
+                <p> Enlaces a la documentación oficial de frameworks y lenguajes de programación. </p>
             </div>
             <hr>
+            <div class="mb-2">
+                @livewire('search-document')
+            </div>
+            <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-white">			 				
+				<table id="users" class="stripe hover border-b-2" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+					<thead>
+                        <tr class="bg-indigo-400 bg-opacity-100 text-white">
+                            <th class="text-left">Titulo</th>
+                                <th></th>
+                                <th class="text-left">Descripción</th>
+                                <th class="text-left">Enlace</th>
+
+                        </tr>
+					</thead>
+					<tbody class="mt-2">
+                        @foreach ($documentations as $documentation)
+                        <tr class="p-2 border-b-2">
+                            <td class="p-2"> {{$documentation->title  }}</td>
+                            <td class="p-2"> <img class="w-1/2 h-1/2" src="{{ Storage::url($documentation->image) }}" alt="{{$documentation->title  }}"></td>
+                            <td class="p-2"> {!!  $documentation->description  !!}</td>
+                            <td class="p-2"> <a href="{{ $documentation->url  }} " target="_blank">{{ __('acceder')  }}</a> </td>
+                        </tr>
+                        @endforeach
+					</tbody>					
+                    {{ $documentations->render() }}
+				</table>				
+			</div>	
+        {{--
             @foreach ($documentations as $documentation)
                 <div class="card mb-2 mt-2 shadow-lg">
                     <div class="card-block shadow-lg p-4">
@@ -36,6 +64,7 @@
                 </div>
             @endforeach
             {{ $documentations->render() }}
+              --}}
         </div>
     </div>
 @endsection

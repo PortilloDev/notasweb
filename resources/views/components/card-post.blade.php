@@ -22,11 +22,12 @@
         </div>
         <a href="{{ route('post', $post->slug) }}">
             <h3 class="font-black text-gray-800 md:text-3xl text-xl">{{ $post->name }}</h3>
+        
+            <p class="md:text-lg text-gray-500 text-base"> {!! Str::limit($post->excerpt, 50, '<strong>... seguir leyendo </strong>👉') !!}</p>
+            <p class="text-xl font-black text-gray-800">
+                fecha:
+                <span class="font-normal text-gray-600 text-base">{{ $post->created_at->format('d/m/Y') }}</span>
+            </p>
         </a>
-        <p class="md:text-lg text-gray-500 text-base"> {!! Str::limit($post->excerpt, 150, '...') !!}</p>
-        <p class="text-xl font-black text-gray-800">
-            fecha:
-            <span class="font-normal text-gray-600 text-base">{{ $post->created_at->format('d/m/Y') }}</span>
-        </p>
     </div>
 </div>
