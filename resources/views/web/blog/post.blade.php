@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@php
+ $url = Request::url();  
+@endphp
 @section('content')
     <div class=" mx-auto w-auto px-4 xl:px-0">
         <section class="bg-cover w-auto h-auto object-fill" style="background-image: url({{ Storage::url($post->image->url) }})">
@@ -11,18 +13,16 @@
         <div class=" ">
                 <hr>
                 <div class="w-auto flex justify-between p-2 mt-2">
-                    <div class="">
+                    <div class="ml-5">
                         Categoria
                         <a href="{{ route('category', $post->category->slug) }}">{{ $post->category->name }}</a>
                     </div>
-                    <div>
-                        <p> Autor: {{ $post->user->name }}</p>
-                    </div>
-                    <div>
-                        <p> fecha: {{ $post->created_at->format('d/m/Y') }}</p>
+                    <div class="mr-5">
+                        <p> Publicado por <strong> {{ $post->user->name }} </strong> el {{ $post->created_at->format('d/m/Y') }}</p>
                     </div>
                 </div>
                 <hr>
+
                 <div class="mt-5 mb-8">
                     <h1 class="font-fold text-6xl text-center font-bold mt-11" style="color:#303a52">{{ $post->name }}</h1>
                 </div>
@@ -32,9 +32,15 @@
                         {!! $post->excerpt !!}
                     </div>
                     <hr>
-                    <div class="mt-2">
-                        {!! $post->body !!}
+                    <div class="flex flex-wrap">
+                        <div class="w-5/6 mt-2">
+                            {!! $post->body !!}
+                        </div>
+                        <div class="w-1/6 mt-2 text-center">
+                            {!! $post->getShare($url) !!}
+                        </div>
                     </div>
+                   
                     <hr>
                     Etiquetas
                     <i class="fas fa-tags"></i>
@@ -44,6 +50,20 @@
                         </a>
                     @endforeach
                 </div>
+        </div>
+        <hr>
+        <div>
+            <h3>Entradas relacionadas</h3>
+        </div>
+        <hr>
+        <div class="mb-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mx-auto max-w-screen-xl ">
+                @if(isset($similar_posts))
+                    @foreach ($similar_posts as $post)
+                        <x-card-post :post="$post" />
+                    @endforeach
+                @endif
+            </div>
         </div>
     </div>
 @endsection

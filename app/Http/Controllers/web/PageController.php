@@ -33,7 +33,7 @@ class PageController extends Controller
         request()->session()->put('post', $slug);
         $post = Post::where('slug', $slug)->first();
         LogHelper::register_view($post);
-        $similar_posts = $this->_getSimilarPost();
+        $similar_posts = $this->_getSimilarPost($post);
         return view('web.blog.post', compact('post', 'similar_posts'));
     }
 
@@ -80,10 +80,9 @@ class PageController extends Controller
     }
 
 
-    private function _getSimilarPost()
+    private function _getSimilarPost($post)
     {
-        $current_slug = request()->session()->get('post');
-        $other_posts = Post::where('status', '2')->where('slug', '!=', $current_slug)->paginate(3);
+        $other_posts = Post::where('status', '2')->where('id', '!=', $post->id)->limit(2)->get();
         return $other_posts;
     }
 }
