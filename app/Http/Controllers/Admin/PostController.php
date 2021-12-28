@@ -118,7 +118,7 @@ class PostController extends Controller
         //IMAGE
         $archivo = $request->file('file');
         if($archivo){
-            $nombre_imagen = $archivo->getClientOriginalName();
+        $nombre_imagen = $archivo->getClientOriginalName();
         Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
         $entrada['file'] =  $nombre_imagen;
         }

@@ -10,12 +10,14 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'method' => 'put' ]) !!}
-
+      <form method="POST" class="form form-horizontal" action="{{ route('admin.posts.update', $post) }}" enctype="multipart/form-data">
+      @csrf
+       <input type="hidden" name="_method" value="put">
         @include('admin.post.partials.form')
-
-        {!! Form::submit('Actualizar Post', ['class' => 'btn btn-primary mt-2']) !!}
-        {!! Form::close() !!}
+        <div class="form-group">
+                <input type="submit" value="Actualizar Post" class="btn btn-primary"/>
+            </div>
+        </form>
     </div>
 </div>
 
