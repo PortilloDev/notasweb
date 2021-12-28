@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Traits\Share;
 use Illuminate\Support\Str;
+
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Share;
     
     const PUBLISHED = 2;
     const DRAFT = 1;
@@ -18,6 +19,11 @@ class Post extends Model
         'user_id', 'category_id', 'name', 'slug', 'excerpt', 'body', 'status', 'file'
     ];
 
+    public function getShare($url) 
+    {
+        return $this->ShareWidget($url);
+        
+    }
     public function setSlugAttribute($value)
     {
         $this->attributes['slug'] = Str::slug($value);

@@ -28,7 +28,6 @@ Route::post('blog/contacto/enviado', [ContactController::class, 'sent'])->name('
 Route::get('blog/politica-privacidad', [PageController::class, 'politica'])->name('politica');
 
 
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
