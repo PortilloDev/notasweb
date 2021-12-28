@@ -63,7 +63,7 @@ class PageController extends Controller
 
     public function documentation()
     {
-        $documentations = Documentation::paginate(3);
+        $documentations = Documentation::all();
         return view('web.document.home', compact('documentations'));
     }
 
