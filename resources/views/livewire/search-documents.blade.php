@@ -12,7 +12,7 @@
 				<table id="users" class="stripe hover border-b-2" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
 					<thead>
                         <tr class="bg-indigo-400 bg-opacity-100 text-white">
-                            <th class="text-left">Titulo</th>
+                            <th class="text-left p-2">Titulo</th>
                                 <th></th>
                                 <th class="text-left">Descripción</th>
                                 <th class="text-left">Enlace</th>
