@@ -50,7 +50,10 @@
 
         <div id="app">
             @if (isset($post))
-                @if (!isset($posts) && (!isset($isTag) && !isset($isCategory)))
+                @if (!isset($posts) && (!isset($isTag) && !isset($isCategory)) )
+                    @php
+                      $post = request()->session()->get('post'); 
+                    @endphp
                     {{ Breadcrumbs::render('post', $post) }}
                 @elseif(isset($isTag))
                     {{ Breadcrumbs::render('tag', $tag) }}
@@ -86,7 +89,7 @@
                 </div>
             @endif
             <div class="container mx-auto p-4">
-                <div class="flex">
+                <div class="">
                     <div class="">
                         @yield('content')
                     </div>

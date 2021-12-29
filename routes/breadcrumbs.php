@@ -4,10 +4,10 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 Breadcrumbs::for('blog', function ($trail) {
     $trail->push('Home', route('blog'));
 });
-
+/*Debido a que carga el rastro de migas antes que el post, guardo en la sessión el nombre y el slug y luego se recupera de ahí*/
 Breadcrumbs::for('post', function ($trail, $post) {
     $trail->parent('blog');
-    $trail->push($post->name, route('post', $post->slug));
+    $trail->push($post['name'], route('post', $post['slug']));
 });
 
 Breadcrumbs::for('category', function ($trail, $category) {
