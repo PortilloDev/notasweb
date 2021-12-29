@@ -4,16 +4,16 @@
 @endphp
 @section('content')
     <div class=" mx-auto w-auto px-4 xl:px-0">
-        <section class="bg-cover w-auto h-auto object-fill" style="background-image: url({{ Storage::url($post->image->url) }})">
+        <section class="bg-contain lg:bg-cover" style="background-image: url({{ Storage::url($post->image->url) }});
+            background-position:center;background-repeat:no-repeat;">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">
-                <div class="w-full md:w-3/4 lg:w-1/2">
-                </div>
+               
             </div>
         </section>
         <div class=" ">
                 <hr>
-                <div class="w-auto flex justify-between p-2 mt-2">
-                    <div class="ml-5">
+                <div class="w-auto grid justify-start p-2 mt-2 md:flex justify-between  ">
+                    <div class="md:ml-5">
                         Categoria
                         <a href="{{ route('category', $post->category->slug) }}">{{ $post->category->name }}</a>
                     </div>
