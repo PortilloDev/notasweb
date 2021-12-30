@@ -22,7 +22,7 @@
 					<tbody class="mt-2">
                         @if ($search)
                             @forelse ($this->documentations as $documentation)
-                                <tr class="p-2 border-b-2">
+                            <tr class="p-2 border-b-2">
                                 <td class="p-2"> {{$documentation->title  }}</td>
                                 <td class="p-2"> <img class="w-1/2 h-1/2" src="{{ Storage::url($documentation->image) }}" alt="{{$documentation->title  }}"></td>
                                 <td class="p-2"> {!!  $documentation->description  !!}</td>
