@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.5",
+        "sendinblue/api-v3-sdk": "^7.4",
         "spatie/laravel-permission": "^5.1"
     },
     "require-dev": {
