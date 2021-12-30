@@ -18,13 +18,10 @@ class PageController extends Controller
     {
         $posts = null;
         $tags = Tag::all();
-       // $last_post = Post::where('status', '2')->latest()->first();
-        //if ( $last_post != null) {
-       // }
         $posts = Post::where('status', '2')
             ->latest()
             ->paginate(4);
-
+        LogHelper::register_view($posts[0]);
         return view('web.blog.posts', compact('posts', 'tags'));
     }
 
@@ -64,6 +61,7 @@ class PageController extends Controller
     public function documentation()
     {
         $documentations = Documentation::all();
+        LogHelper::register_view($documentations[0]);
         return view('web.document.home', compact('documentations'));
     }
 
