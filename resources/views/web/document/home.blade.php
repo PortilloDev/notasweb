@@ -12,8 +12,7 @@
             <hr>
             <div class="mb-2">
                 @livewire('search-documents', ['documentations' => $documentations])
-            </div>
-           
+            </div>           
         </div>
     </div>
 @endsection
