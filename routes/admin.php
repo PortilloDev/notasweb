@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdministrationTasksController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -29,3 +30,6 @@ Route::resource('tecnologies', TecnologyController::class)->names('tecnologies')
 Route::resource('tools', ToolController::class)->names('tools');
 Route::resource('documentations', DocumentationController::class)->names('documentations');
 Route::resource('layouts', LayoutController::class)->names('layouts');
+
+Route::get('previsualizacion', [AdministrationTasksController::class, 'previsualizacion'])->name('previsualizacion');
+
