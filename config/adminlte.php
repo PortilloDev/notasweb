@@ -275,6 +275,16 @@ return [
             'icon'        => 'fas fa-fw fa-file-code',
             'active' => ['admin/layouts*']
         ],
+        [
+            'text' => 'Tareas',
+            'icon'        => 'fas fa-fw fa-tools',
+            'submenu' => [
+                [
+                    'text' => 'Previsualización',
+                    'url'  => 'admin/previsualizacion',
+                ],
+            ],
+        ],
         /*
         ['header' => 'account_settings'],
         [
