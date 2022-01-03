@@ -43,15 +43,17 @@
                     Etiquetas
                     <i class="fas fa-tags"></i>
                     @foreach ($post->tags as $tag)
-                        <a href="{{ route('tag', $tag->slug) }}">
-                            {{ $tag->name }}
-                        </a>
+                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                            <a href="{{ route('tag', $tag->slug) }}">
+                                #{{ $tag->name }}
+                            </a>
+                        </span>
                     @endforeach
                 </div>
         </div>
         <hr>
         <div>
-            <h3>Entradas relacionadas</h3>
+            <h3>Otros artículos</h3>
         </div>
         <hr>
         <div class="mb-5">

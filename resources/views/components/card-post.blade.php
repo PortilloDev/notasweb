@@ -14,9 +14,11 @@
             <p>
                 <i class="fas fa-tags"></i>
                 @foreach ($post->tags as $tag)
-                    <a href="{{ route('tag', $tag->slug) }}">
-                        {{ $tag->name.',' }}
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                        <a href="{{ route('tag', $tag->slug) }}">
+                        #{{ $tag->name }}
                     </a>
+                </span>
                 @endforeach
             </p>
             <div>
@@ -26,11 +28,12 @@
                 </p>
             </div>
         </div>
-        <a href="{{ route('post', $post->slug) }}">
-            <h3 class="font-black text-gray-800 md:text-3xl text-xl">{{ $post->name }}</h3>
-        
-            <p class="md:text-lg text-gray-500 text-base"> {!! Str::limit($post->excerpt, 50, '<strong>... seguir leyendo </strong>👉') !!}</p>
-           
-        </a>
+            <h3 class="font-black text-gray-800 md:text-3xl text-xl"> <a href="{{ route('post', $post->slug) }}"> {{ $post->name }} </a></h3>
+            <div>
+                <p class="md:text-lg text-gray-500 text-base"> {!! Str::limit($post->excerpt, 80, '....') !!}</p>
+            </div>
+            <div class="w-auto h-auto md:w-1/3">
+                <a href="{{ route('post', $post->slug) }}" class="bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 border border-blue-700 rounded-md text-base"> Leer más</a>
+            </div>
     </div>
 </div>
