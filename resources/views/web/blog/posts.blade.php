@@ -22,7 +22,7 @@ $texts = $text_layout::getHeaderText();
         <hr>
         <section class="mb-10 mx-auto max-w-screen-xl px-4 xl:px-0">
                 <div class="mt-6 mb-4 font-semibold text-center">
-                    <h3>Entradas en el blog</h3>
+                    <h3>Articulos en el blog</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mx-auto max-w-screen-xl ">
                     @if(isset($posts))
