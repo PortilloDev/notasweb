@@ -41,9 +41,9 @@
                         <td>{{ $post->slug }}</td>
                         <td>{{ $post->excerpt }}</td>
                         @if( $post->status == 1)
-                        <td>{{ __('Borrador') }}</td>
+                        <td>🔘</td>
                         @else
-                        <td>{{ __('Publicado')}}</td>
+                        <td>✅</td>
                         @endif
                         
                         <td width="10px">
@@ -64,13 +64,13 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="mt-4">
+            {{ $posts->render() }}
+        </div>
     </div>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script></script>
 @stop

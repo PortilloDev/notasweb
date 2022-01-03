@@ -41,10 +41,10 @@ class PageController extends Controller
         $category = Category::where('slug', $slug)->first();
         $posts = Post::where('category_id', $category->id)
             ->orderBy('id', 'DESC')->where('status', '2')
-            ->paginate(3);
+            ->get();
         $isCategory = true;
 
-        return view('web.blog.posts', compact('posts', 'isCategory', 'category'));
+        return view('web.blog.categories', compact('posts', 'isCategory', 'category'));
     }
 
     public function tag($slug)
@@ -52,10 +52,11 @@ class PageController extends Controller
         $tag = Tag::where('slug', $slug)->first();
         $posts = Post::whereHas('tags', function ($query) use ($slug) {
             $query->where('slug', $slug);
-        })->orderBy('id', 'DESC')->where('status', '2')
-            ->paginate(3);
+        })->orderBy('id', 'DESC')
+        ->where('status', '2')
+        ->get();
         $isTag = true;
-        return view('web.blog.posts', compact('posts', 'isTag', 'tag'));
+        return view('web.blog.tags', compact('posts', 'isTag', 'tag'));
     }
 
     public function documentation()

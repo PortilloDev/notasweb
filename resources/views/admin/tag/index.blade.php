@@ -53,6 +53,9 @@
             </tbody>
         </table>
     </div>
+    <div class="mt-4">
+        {{ $tags->links() }}
+    </div>
    
 @stop
 
