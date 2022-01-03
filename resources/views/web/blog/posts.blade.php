@@ -31,9 +31,9 @@ $texts = $text_layout::getHeaderText();
                         @endforeach
                         @endif
                 </div>
-                <div class="mt-4">
-                    {{ $posts->render() }}
-                </div>
-        </section>
+            </section>
+            <div class="mt-4">
+                {{ $posts->links() }}
+            </div>
     </div>
 @endsection
