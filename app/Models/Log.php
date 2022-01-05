@@ -9,7 +9,7 @@ class Log extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'post_id', 'url_current', 'url_previous'
+        'post_id', 'url_current', 'url_previous', '_token', 'info', 'model', 'pages'
     ];
     
 

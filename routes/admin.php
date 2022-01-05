@@ -32,4 +32,5 @@ Route::resource('documentations', DocumentationController::class)->names('docume
 Route::resource('layouts', LayoutController::class)->names('layouts');
 
 Route::get('previsualizacion', [AdministrationTasksController::class, 'previsualizacion'])->name('previsualizacion');
+Route::get('logs', [AdministrationTasksController::class, 'logs'])->name('logs');
 

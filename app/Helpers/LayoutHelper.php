@@ -11,4 +11,5 @@ class LayoutHelper
         $layout = Layout::first();
         return $layout;
     }
+
 }
