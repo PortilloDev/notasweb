@@ -283,6 +283,10 @@ return [
                     'text' => 'Previsualización',
                     'url'  => 'admin/previsualizacion',
                 ],
+                [
+                    'text' => 'Logs',
+                    'url'  => 'admin/logs',
+                ],
             ],
         ],
         /*

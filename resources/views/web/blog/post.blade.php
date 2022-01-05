@@ -16,6 +16,9 @@
                         Categoria
                         <a href="{{ route('category', $post->category->slug) }}">{{ $post->category->name }}</a>
                     </div>
+                    <div>
+                        <i class="fas fa-eye"></i>  <span class="text-base"> {{ $post->visits }}   </span>
+                    </div>
                     <div class="mr-5">
                         <p> Publicado por <strong> {{ $post->user->name }} </strong> el {{ $post->created_at->format('d/m/Y') }}</p>
                     </div>

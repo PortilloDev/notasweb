@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+use App\Models\Log;
 use App\Models\Post;
 
 class AdministrationTasksController extends Controller
@@ -13,5 +15,11 @@ class AdministrationTasksController extends Controller
     {
         $posts = Post::all();
         return view('admin.task.previsualizacion', compact('posts'));
+    }
+
+    public function logs()
+    {
+        $logs = Log::paginate(25);
+        return view('admin.task.logs', compact('logs'));
     }
 }

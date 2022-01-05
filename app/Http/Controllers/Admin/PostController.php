@@ -32,6 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
+       
         $categories = Category::all(['name','id']);
         $users = User::all(['name','id']);
         $tags = Tag::all(['id', 'name']);
@@ -47,6 +48,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
       
+        
         
         $request->validate([
             'name' => 'required|string',
@@ -118,9 +120,9 @@ class PostController extends Controller
         //IMAGE
         $archivo = $request->file('file');
         if($archivo){
-        $nombre_imagen = $archivo->getClientOriginalName();
-        Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
-        $entrada['file'] =  $nombre_imagen;
+            $nombre_imagen = $archivo->getClientOriginalName();
+            Storage::disk('public')->put($nombre_imagen,file_get_contents($archivo));
+            $entrada['file'] =  $nombre_imagen;
         }
 
         $post->fill($entrada)->save();
