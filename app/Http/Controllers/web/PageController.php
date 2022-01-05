@@ -21,15 +21,17 @@ class PageController extends Controller
         $posts = Post::where('status', '2')
             ->latest()
             ->paginate(4);
-        LogHelper::register_view($posts[0]);
+        $this->__registerLog($posts[0]);
         return view('web.blog.posts', compact('posts', 'tags'));
     }
 
     public function post($slug)
     {
         $post = Post::where('slug','like' ,$slug)->first();
+        $this->__register_visit($post);
         $this->__register_session($post);
-        LogHelper::register_view($post);
+        $this->__registerLog($post);
+
         $similar_posts = $this->_getSimilarPost($post);
         return view('web.blog.post', compact('post', 'similar_posts'));
     }
@@ -62,7 +64,7 @@ class PageController extends Controller
     public function documentation()
     {
         $documentations = Documentation::all();
-        LogHelper::register_view($documentations[0]);
+        $this->__registerLog($documentations[0]);
         return view('web.document.home', compact('documentations'));
     }
 
@@ -92,5 +94,18 @@ class PageController extends Controller
             'slug' => $post->slug,
         ];
         request()->session()->put('post', $post);
+    }
+
+
+    private function __registerLog($model)
+    {
+        $session = request()->session()->get('_token');
+        LogHelper::register_view($model , $session);
+    }
+
+    private function __register_visit($post)
+    {
+        $post->visits = $post->visits + 1;
+        $post->save();
     }
 }
