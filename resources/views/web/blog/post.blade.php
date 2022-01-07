@@ -39,7 +39,7 @@
                             {!! $post->body !!}
                         </div>
                         <div class="w-1/6 mt-2 text-center">
-                            {!! $post->getShare($url) !!}
+                            {!! $post->getShare($url, $post->name) !!}
                         </div>
                     </div>                   
                     <hr>

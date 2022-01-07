@@ -20,6 +20,7 @@ class AdministrationTasksController extends Controller
     public function logs()
     {
         $logs = Log::paginate(25);
-        return view('admin.task.logs', compact('logs'));
+        $posts = Post::where('status', 1)->orderBy('visits','desc')->get();
+        return view('admin.task.logs', compact('logs','posts'));
     }
 }
