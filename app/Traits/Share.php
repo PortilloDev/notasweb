@@ -3,11 +3,11 @@
 namespace App\Traits;
 
 trait Share {
-    public function ShareWidget($page)
+    public function ShareWidget($page, $post_name)
     {
         $shareComponent = \Share::page(
             $page,
-            'Publicación compartida desde https://notasweb.me',
+            $post_name. ' ',
         )
         ->facebook()
         ->twitter()

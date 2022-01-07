@@ -19,9 +19,9 @@ class Post extends Model
         'user_id', 'category_id', 'name', 'slug', 'excerpt', 'body', 'status', 'file'
     ];
 
-    public function getShare($url) 
+    public function getShare($url, $post_name) 
     {
-        return $this->ShareWidget($url);
+        return $this->ShareWidget($url, $post_name);
         
     }
     public function setSlugAttribute($value)
