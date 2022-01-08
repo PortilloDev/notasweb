@@ -15,7 +15,8 @@
           <a href="{{ route('blog') }}" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Blog</a>
           <a href="{{ route('documentation') }}" class="py-4 px-2 text-white  font-semibold hover:text-gray-100 transition duration-300 ">Documentación</a>
           <a href="{{ route('contact') }}" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Contacto</a>
-          <a href="https://ivan-portillo-perez.com" target="_blank" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Sobre mí</a>
+          <a href="{{ route('perfil') }}" target="_blank" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Sobre mí</a>
+          <a href="https://ivan-portillo-perez.com" target="_blank" class="py-4 px-2 text-white font-semibold hover:text-gray-100 transition duration-300">Portfolio</a>
         </div>
         <!-- Mobile menu button -->
         <div class="md:hidden flex items-center">
@@ -43,7 +44,8 @@
         <li><a href="{{ route('blog') }}" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Blog</a></li>
         <li><a href="{{ route('documentation') }}" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Documentación</a></li>
         <li><a href="{{ route('contact') }}" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Contacto</a></li>
-        <li><a href="https://ivan-portillo-perez.com" target="_blank" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Sobre mí</a></li>
+        <li><a href="{{ route('perfil') }}" target="_blank" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Sobre mí</a></li>
+        <li><a href="https://ivan-portillo-perez.com" target="_blank" style="hover:gray" class="block text-sm px-2 py-4  transition duration-300">Portfolio</a></li>
       </ul>
     </div>
     <script>

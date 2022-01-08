@@ -5,7 +5,7 @@
         <h2>Articulos relacionados con la etiqueta de <b> {{$tag->name}} </b></h2>
     </div>
     <hr>
-    <div class="grid grid-cols-1 gap-4 mx-auto ">
+    <div class="gap-4 mx-auto max-w-screen-xl ml-10 mr-10">
         @if(isset($posts))
             @foreach ($posts as $post)
                 <x-card-post :post="$post" />
