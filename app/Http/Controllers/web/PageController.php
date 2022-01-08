@@ -72,6 +72,12 @@ class PageController extends Controller
     {
         return view('web.politicas.politicas');
     }
+
+    public function perfil() 
+    {
+        return view('web.profile.index');
+    }
+    
     public function asside()
     {
 

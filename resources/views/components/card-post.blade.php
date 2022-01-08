@@ -1,39 +1,58 @@
 <!-- component -->
 @props(['post'])
 
-<div
-    class="relative grid grid-col w-full h-full md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-    <div class="w-full mb-4 md:w-full bg-white grid place-items-center">
+
+<div class="w-full cursor-pointer rounded-md shadow-md shadow-gray-200 hover:shadow-blue-400/80 hover:shadow-2xl hover:bg-gray-50">
+    <div class="md:flex-shrink-0">
         <a href="{{ route('post', $post->slug) }}">
             <img src="{{ Storage::url($post->image->url) }}" alt="{{ $post->name }}" title="{{ $post->name }} }}"
-                class="rounded-xl" />
+                class="w-full h-64 rounded-lg rounded-b-none">
         </a>
     </div>
-    <div class="w-full md:w-auto bg-white flex flex-col space-y-2 p-3">
-        <div class="grid justify-between item-center gap-2">
+    <div class="p-4">
+        <div>
             <p>
                 <i class="fas fa-tags"></i>
                 @foreach ($post->tags as $tag)
-                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                    <span
+                        class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                         <a href="{{ route('tag', $tag->slug) }}">
-                        #{{ $tag->name }}
-                    </a>
-                </span>
+                            #{{ $tag->name }}
+                        </a>
+                    </span>
                 @endforeach
             </p>
-            <div>
-                <p class="text-xl font-black text-gray-800">
-                    Publicado:
-                    <span class="font-normal text-gray-600 text-base">{{ $post->created_at->format('d/m/Y') }}</span>
-                </p>
+        </div>
+        <div class="w-auto grid justify-start p-2 mt-2 md:flex justify-between ">
+            <p class="font-semibold text-xl py-2"> <a href="{{ route('post', $post->slug) }}"> {{ $post->name }} </a></p>
+            <div class="text-xs font-medium text-gray-500 flex flex-row items-center mr-2">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                    </path>
+                </svg>
+                <span>{{$post->visits}}</span>
             </div>
         </div>
-            <h3 class="font-black text-gray-800 md:text-3xl text-xl"> <a href="{{ route('post', $post->slug) }}"> {{ $post->name }} </a></h3>
-            <div>
-                <p class="md:text-lg text-gray-500 text-base"> {!! Str::limit($post->excerpt, 80, '....') !!}</p>
+        
+        <p class="font-light text-gray-700 text-justify line-clamp-3">{!! Str::limit($post->excerpt, 150, '....') !!}</p>
+        <div class="flex items-center justify-between mt-2 mx-6">
+            <a href="{{ route('post', $post->slug) }}" class="text-blue-500 text-lg bold -ml-3 "> Leer más</a>
+            
+        </div>
+        <hr>
+        <div class="author flex items-center -ml-3 my-3">
+            <div class="user-logo">
+                <img class="w-12 h-12 object-cover rounded-full mx-4  shadow"
+                    src="{{ asset('storage/blog/profile.jpg') }}" alt="avatar">
             </div>
-            <div class="w-auto h-auto md:w-1/3">
-                <a href="{{ route('post', $post->slug) }}" class="bg-blue-700 hover:bg-blue-400 text-white font-bold py-2 px-4 border border-blue-700 rounded-md text-base"> Leer más</a>
-            </div>
+            <h2 class="text-sm tracking-tighter text-gray-900">
+                By <a href="{{ route('perfil') }}"> {{ $post->user->name }}</a> <span
+                    class="text-gray-600">{{ $post->created_at->format('d/m/Y') }}.</span>
+            </h2>
+        </div>
     </div>
 </div>
