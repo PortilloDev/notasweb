@@ -33,3 +33,8 @@ Breadcrumbs::for('politica', function ($trail) {
     $trail->push('politica-privacidad', route('politica'));
 });
 
+Breadcrumbs::for('perfil', function ($trail) {
+    $trail->parent('blog');
+    $trail->push('Sobre mí', route('perfil'));
+});
+
