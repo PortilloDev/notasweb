@@ -24,7 +24,9 @@ $texts = $text_layout::getHeaderText();
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mx-auto max-w-screen-xl ">
                 @if (isset($posts))
                     @foreach ($posts as $post)
-                        <x-card-post :post="$post" />
+                        <div class="w-auto cursor-pointer rounded-md shadow-md shadow-gray-200 hover:shadow-blue-400/80 hover:shadow-2xl hover:bg-gray-50">
+                            <x-card-post :post="$post" />
+                        </div>
                     @endforeach
                 @endif
             </div>

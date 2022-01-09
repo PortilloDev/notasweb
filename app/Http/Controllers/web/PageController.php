@@ -51,6 +51,9 @@ class PageController extends Controller
 
     public function tag($slug)
     {
+        $post_tag = DB::table('post_tag')->pluck('tag_id', 'tag_id');
+        $tags = Tag::whereIn('id', $post_tag)->get();
+        
         $tag = Tag::where('slug', $slug)->first();
         $posts = Post::whereHas('tags', function ($query) use ($slug) {
             $query->where('slug', $slug);
@@ -58,7 +61,7 @@ class PageController extends Controller
         ->where('status', '2')
         ->get();
         $isTag = true;
-        return view('web.blog.tags', compact('posts', 'isTag', 'tag'));
+        return view('web.blog.tags', compact('posts', 'isTag', 'tag','tags'));
     }
 
     public function documentation()
