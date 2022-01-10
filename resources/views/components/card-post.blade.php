@@ -4,7 +4,7 @@
 <div class="md:flex-shrink-0">
     <a href="{{ route('post', $post->slug) }}">
         <img src="{{ Storage::url($post->image->url) }}" alt="{{ $post->name }}" title="{{ $post->name }} }}"
-            class="w-full h-64 rounded-lg rounded-b-none">
+            class="w-full h-64 rounded-lg rounded-b-none p-4">
     </a>
 </div>
 <div class="p-4">
