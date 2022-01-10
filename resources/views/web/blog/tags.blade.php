@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('meta_title', 'Notasweb: Etiquetas ' .$tag->name)
 @section('content')
 <section class="mb-10 mx-auto max-w-screen-xl px-4 xl:px-0">
     <div class="mt-6 mb-4 font-semibold text-left">
