@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('meta_title', 'Notasweb: Sobre mì ')
+@section('meta_title', 'Sobre mì ')
 @section('content')
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">

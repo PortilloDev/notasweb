@@ -4,7 +4,7 @@
 $url = Request::url();
 $texts = $text_layout::getHeaderText();
 @endphp
-@section('meta_title', 'Notasweb: Articulo - '.$post->name)
+@section('meta_title', $post->name)
 @section('content')
 
     <section class="w-auto h-auto bg-center bg-cover" style="background-image: url({{ Storage::url($post->image->url) }})">

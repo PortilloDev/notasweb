@@ -1,16 +1,16 @@
 @extends('layouts.app')
-@section('meta_title', 'Notasweb: Etiquetas ' .$tag->name)
+@section('meta_title', 'Etiquetas ' .$tag->name)
 @section('content')
 <section class="mb-10 mx-auto max-w-screen-xl px-4 xl:px-0">
     <div class="mt-6 mb-4 font-semibold text-left">
         <h2>Articulos relacionados con la etiqueta de <b> {{$tag->name}} </b></h2>
     </div>
     <hr>
-    <div class="flex flex-col lg:flex-row">
-        <div class="px-2 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+        <div class="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
             @if(isset($posts))
                 @foreach ($posts as $post)
-                <div class="w-4/6 mb-4 cursor-pointer rounded-md shadow-md shadow-gray-200 hover:shadow-blue-400/80 hover:shadow-2xl hover:bg-gray-50">
+                <div class=" w-full mb-4 cursor-pointer rounded-md shadow-md shadow-gray-200 hover:shadow-blue-400/80 hover:shadow-2xl hover:bg-gray-50 lg:w-4/6">
                     <x-card-post :post="$post" />
                 </div>
                 @endforeach
@@ -18,7 +18,7 @@
                 <h4>Lo sentimos, pero en este momento no existen entradas relacionadas a esta etiqueta</h4>
             @endif
         </div>
-        <div class="w-full lg:w-2/6 max-w-screen-sm">
+        <div class="w-full lg:w-1/4 max-w-screen-sm">
             <div class="grid">
                   <h3> Otras etiquetas</h3>
             </div>

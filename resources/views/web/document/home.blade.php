@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('meta_title', 'Notasweb: Documentación')
+@section('meta_title', 'Documentación')
 @section('content')
     <div class="container">
         <div class="">
