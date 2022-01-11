@@ -11,6 +11,13 @@
     <meta name="description" content="Blog sobre desarrollo web y programación">
     <meta name="meywords" content="Blog sobre desarrollo web y programación">
 
+    <meta property="og:type" content="website" />
+	<meta property="og:title" content="  {{ config('app.name') }}  " />
+	<meta property="og:description" content="  Notasweb - Web sobre contenido de desarrollo web y programación " />
+	<meta property="og:url" content="https://notasweb.me" />
+	<meta property="og:site_name"  content="  {{ config('app.name') }}  " />
+
+	<meta property="og:image" content="{{ asset('storage/blog/home.jpg') }}" />
     <title>{{ config('app.name', 'NotasWeb') }}</title>
 
     <!-- Fonts -->
