@@ -27,7 +27,12 @@ class PageController extends Controller
 
     public function post($slug)
     {
-        $post = Post::where('slug','like' ,$slug)->first();
+        $post = Post::where('slug', 'like', $slug)->first();
+
+        if ($post->status === "1") {
+            return redirect()->back();
+        }
+
         $this->__register_visit($post);
         $this->__register_session($post);
         $this->__registerLog($post);
@@ -35,7 +40,6 @@ class PageController extends Controller
         $similar_posts = $this->_getSimilarPost($post);
         return view('web.blog.post', compact('post', 'similar_posts'));
     }
-
 
     public function category($slug)
     {
@@ -53,15 +57,15 @@ class PageController extends Controller
     {
         $post_tag = DB::table('post_tag')->pluck('tag_id', 'tag_id');
         $tags = Tag::whereIn('id', $post_tag)->get();
-        
+
         $tag = Tag::where('slug', $slug)->first();
         $posts = Post::whereHas('tags', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->orderBy('id', 'DESC')
-        ->where('status', '2')
-        ->get();
+            ->where('status', '2')
+            ->get();
         $isTag = true;
-        return view('web.blog.tags', compact('posts', 'isTag', 'tag','tags'));
+        return view('web.blog.tags', compact('posts', 'isTag', 'tag', 'tags'));
     }
 
     public function documentation()
@@ -71,16 +75,16 @@ class PageController extends Controller
         return view('web.document.home', compact('documentations'));
     }
 
-    public function politica() 
+    public function politica()
     {
         return view('web.politicas.politicas');
     }
 
-    public function perfil() 
+    public function perfil()
     {
         return view('web.profile.index');
     }
-    
+
     public function asside()
     {
 
@@ -88,7 +92,6 @@ class PageController extends Controller
 
         return view('template.asside', compact('similar_posts'));
     }
-
 
     private function _getSimilarPost($post)
     {
@@ -105,11 +108,10 @@ class PageController extends Controller
         request()->session()->put('post', $post);
     }
 
-
     private function __registerLog($model)
     {
         $session = request()->session()->get('_token');
-        LogHelper::register_view($model , $session);
+        LogHelper::register_view($model, $session);
     }
 
     private function __register_visit($post)

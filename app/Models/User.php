@@ -60,4 +60,9 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
     
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
