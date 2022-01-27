@@ -1,8 +1,12 @@
 @inject('text_layout', 'App\Helpers\LayoutHelper' )
 @extends('layouts.app')
+
 @php
-$texts = $text_layout::getHeaderText();
+    $texts = $text_layout::getHeaderText();
 @endphp
+
+@section('meta_title', 'Home')
+@section('meta_image', asset('storage/blog/home.jpg') )
 
 @section('content')
     <section class="w-full h-full bg-center bg-cover" style="background-image: url({{ asset('storage/blog/home.jpg') }})">
@@ -21,7 +25,8 @@ $texts = $text_layout::getHeaderText();
             <div class="mt-6 mb-4 font-semibold text-center">
                 <h3>Articulos en el blog</h3>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-4 mx-auto max-w-screen-xl ">
+            
+            <div class="grid  w-full md:grid-cols-2 lg:grid-cols-2 gap-4 p-4 mx-auto max-w-screen-xl ">
                 @if (isset($posts))
                     @foreach ($posts as $post)
                         <div class="w-auto cursor-pointer rounded-md shadow-md shadow-gray-200 hover:shadow-blue-400/80 hover:shadow-2xl hover:bg-gray-50">

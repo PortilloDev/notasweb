@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('meta_title', 'Contacto')
 @section('content')
     <div class="container">
         <div>

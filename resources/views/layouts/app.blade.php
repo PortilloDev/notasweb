@@ -6,10 +6,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>@yield('meta_title') - {{ config('app.name') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Blog sobre desarrollo web y programación">
     <meta name="meywords" content="Blog sobre desarrollo web y programación">
 
+    <meta property="og:type" content="website" />
+	<meta property="og:title" content="  {{ config('app.name') }}  " />
+	<meta property="og:description" content="  Notasweb - Web sobre contenido de desarrollo web y programación " />
+	<meta property="og:url" content="https://notasweb.me" />
+	<meta property="og:site_name"  content="  {{ config('app.name') }}  " />
+
+	{{-- <meta property="og:image" content="{{ asset('storage/blog/home.jpg') }}" /> --}}
+    <meta property="og:image" content=@yield('meta_image') />
     <title>{{ config('app.name', 'NotasWeb') }}</title>
 
     <!-- Fonts -->
@@ -25,7 +34,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('js/script/app.js') }}" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <!-- include libraries(jQuery, bootstrap) -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -40,7 +49,15 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0PTWNS3TM"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
+        gtag('config', 'G-S0PTWNS3TM');
+    </script>
 
 </head>
 

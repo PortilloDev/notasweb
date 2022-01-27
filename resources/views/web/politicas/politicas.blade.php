@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('meta_title', 'Política privacidad ')
 @section('content')
     <div class="container">
             <div class="text-center font-bold">
