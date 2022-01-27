@@ -1,9 +1,13 @@
 @inject('text_layout', 'App\Helpers\LayoutHelper' )
 @extends('layouts.app')
+
 @php
-$texts = $text_layout::getHeaderText();
+    $texts = $text_layout::getHeaderText();
 @endphp
+
 @section('meta_title', 'Home')
+@section('meta_image', asset('storage/blog/home.jpg') )
+
 @section('content')
     <section class="w-full h-full bg-center bg-cover" style="background-image: url({{ asset('storage/blog/home.jpg') }})">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">

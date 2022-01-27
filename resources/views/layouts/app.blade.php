@@ -17,7 +17,8 @@
 	<meta property="og:url" content="https://notasweb.me" />
 	<meta property="og:site_name"  content="  {{ config('app.name') }}  " />
 
-	<meta property="og:image" content="{{ asset('storage/blog/home.jpg') }}" />
+	{{-- <meta property="og:image" content="{{ asset('storage/blog/home.jpg') }}" /> --}}
+    <meta property="og:image" content=@yield('meta_image') />
     <title>{{ config('app.name', 'NotasWeb') }}</title>
 
     <!-- Fonts -->
@@ -33,7 +34,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="{{ asset('js/script/app.js') }}" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <!-- include libraries(jQuery, bootstrap) -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">

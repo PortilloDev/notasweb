@@ -40,8 +40,20 @@
                         <td scope="row">  {{$log->url_previous}}   </td> --}}
                         <td scope="row">  {{$log->info}}   </td>
                         <td scope="row">  {{$log->model}}   </td>
-                        <td scope="row">  
-                            <select name="" id="">
+                            <td scope="row"> 
+                                <div x-data="{ open: false }">
+                                        <button @click="open = true">Show More...</button>
+                                        @php
+                                            $pages = json_decode($log->pages, true);
+                                        @endphp
+                                            <ul x-show="open" @click.away="open = false">
+                                            @foreach($pages as $page)
+                                            <li>{{$page}}</li>   
+                                                @endforeach
+                                        </ul>
+                                </div>
+                             </td>
+                            {{-- <select name="" id="">
                                 @php
                                     $pages = json_decode($log->pages, true);
                                 @endphp
@@ -50,9 +62,8 @@
                                         <option value="">{{$page}}</option>
                                     @endforeach
                                 @endif
-                            </select>
+                            </select> --}}
                              
-                        </td>
                         <td scope="row">  {{$log->created_at->format('d/m/Y H:m:s')}}   </td>
                         <td scope="row">  {{$log->updated_at->format('d/m/Y H:m:s')}}   </td>
                     </tr>

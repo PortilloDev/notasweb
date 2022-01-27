@@ -1,10 +1,14 @@
 @inject('text_layout', 'App\Helpers\LayoutHelper' )
 @extends('layouts.app')
 @php
-$url = Request::url();
-$texts = $text_layout::getHeaderText();
+    $url = Request::url();
+    $texts = $text_layout::getHeaderText();
+    $url_image = Storage::url($post->image->url);
 @endphp
+
 @section('meta_title', $post->name)
+@section('meta_image', asset($url_image))
+
 @section('content')
 
     <section class="w-auto h-auto bg-center bg-cover" style="background-image: url({{ Storage::url($post->image->url) }})">
