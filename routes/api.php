@@ -17,4 +17,6 @@ use App\Http\Controllers\Api\V1\ContactController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('contact', ContactController::class)->only('store');
+
+
+Route::post('v1/contact_form', [ContactController::class, 'contact']);
