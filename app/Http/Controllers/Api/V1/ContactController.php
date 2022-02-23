@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\ContactResource;
 use App\Mail\SendMailReactContact;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Exception;
@@ -15,8 +13,8 @@ class ContactController extends Controller
 
     public function contact(Request $request)
     {
-       $response = $this->validate_request($request);
-       return  response()->json([
+        $response = $this->validate_request($request);
+        return  response()->json([
                 'message' => $response['messages']
             ], $response['code']);
         
