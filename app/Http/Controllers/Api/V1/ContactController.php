@@ -69,7 +69,7 @@ class ContactController extends Controller
         ];
 
         try {
-            Mail::to( env('MAIL_CONTACT_RAFA'))->bcc(env('MAIL_CONTACT_BCC'))->send(new SendMailReactContact($data));
+            Mail::to( env('MAIL_CONTACT_RAFA'))->bcc(env('MAIL_CONTACT_RAFA_CC'))->send(new SendMailReactContact($data));
         } catch (Exception $error) {
             Log::error("ERROR: Registro formulario contacto -" . $error->getMessage());
             return false;
