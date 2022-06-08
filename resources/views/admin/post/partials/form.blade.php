@@ -17,7 +17,7 @@
 </div>  
 <div class="form-group">
     <label class="form-label">Description</label>
-    <textarea name="body" rows="5" cols="40" class="form-control summernote">
+    <textarea name="body" rows="5" cols="40" class="form-control">
         @if(isset($post->body))
             {{ $post->body }}
         @endif
