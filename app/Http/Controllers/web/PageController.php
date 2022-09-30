@@ -2,75 +2,109 @@
 
 namespace App\Http\Controllers\web;
 
-use App\Helpers\LogHelper;
+use App\Src\TagActions;
+use App\Src\PostActions;
+use App\Src\CategoryActions;
+use App\Src\DocumentationActions;
+use App\Src\RegisterActions;
+
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Documentation;
-use App\Models\Post;
-use App\Models\Tag;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
+    const DRAFT = "1";
+    protected $postActions;
+    protected $tagActions;
+    protected $categoryActions;
+    protected $documentActions;
+    protected $registerActions;
+
+    public function __construct()
+    {
+        $this->postActions = new PostActions();
+        $this->tagActions = new TagActions();
+        $this->categoryActions = new CategoryActions();
+        $this->documentActions = new DocumentationActions();
+        $this->registerActions = new RegisterActions();
+    }
+
 
     public function blog()
     {
-        $posts = null;
-        $tags = Tag::all();
-        $posts = Post::where('status', '2')
-            ->latest()
-            ->paginate(4);
-        $this->__registerLog($posts[0]);
+
+        $tags = $this->tagActions->getTags();
+        $posts = $this->postActions->getPosts();
+
+        $this->registerActions->registerLog($posts[0]);
+
         return view('web.blog.posts', compact('posts', 'tags'));
     }
 
     public function post($slug)
     {
-        $post = Post::where('slug', 'like', $slug)->first();
+        $post =$this->postActions->getPost($slug);
 
-        if ($post->status === "1") {
+        if ($post->status === self::DRAFT) {
             return redirect()->back();
         }
 
-        $this->__register_visit($post);
-        $this->__register_session($post);
-        $this->__registerLog($post);
+        try {
+            $this->registerActions->register_visit($post);
+            $this->registerActions->register_session($post);
+            $this->registerActions->registerLog($post);
 
-        $similar_posts = $this->_getSimilarPost($post);
+            $similar_posts = $this->postActions->_getSimilarPost($post);
+        }catch(\Exception $exception) {
+
+            Log::warning('PageController::post->info: ' . $exception->getMessage());
+            return redirect()->back();
+
+        }
+
         return view('web.blog.post', compact('post', 'similar_posts'));
     }
 
     public function category($slug)
     {
+        try {
 
-        $category = Category::where('slug', $slug)->first();
-        $posts = Post::where('category_id', $category->id)
-            ->orderBy('id', 'DESC')->where('status', '2')
-            ->get();
-        $isCategory = true;
+            $category =  $this->categoryActions->getCategory($slug);
+            $posts = $this->postActions->_getSimilarPost($category->id);
+            $isCategory = true;
+
+        }catch(\Exception $exception) {
+            Log::warning('PageController::category->info: ' . $exception->getMessage());
+            return redirect()->back();
+
+        }
+
 
         return view('web.blog.categories', compact('posts', 'isCategory', 'category'));
     }
 
     public function tag($slug)
     {
-        $post_tag = DB::table('post_tag')->pluck('tag_id', 'tag_id');
-        $tags = Tag::whereIn('id', $post_tag)->get();
+        try {
 
-        $tag = Tag::where('slug', $slug)->first();
-        $posts = Post::whereHas('tags', function ($query) use ($slug) {
-            $query->where('slug', $slug);
-        })->orderBy('id', 'DESC')
-            ->where('status', '2')
-            ->get();
-        $isTag = true;
+            $post_tag = $this->postActions->getRelationPostsByTags();
+            $tags = $this->tagActions->tagsOfPublishedPosts($post_tag);
+            $tag = $this->tagActions->getTag($slug);
+            $posts = $this->postActions->getPostsByTags($slug);
+            $isTag = true;
+
+        }catch(\Exception $exception) {
+
+            Log::warning('PageController::tag->info: ' . $exception->getMessage());
+            return redirect()->back();
+
+        }
         return view('web.blog.tags', compact('posts', 'isTag', 'tag', 'tags'));
     }
 
     public function documentation()
     {
-        $documentations = Documentation::all();
+        $documentations = $this->documentActions->getDocumentations();
         $this->__registerLog($documentations[0]);
         return view('web.document.home', compact('documentations'));
     }
@@ -85,38 +119,4 @@ class PageController extends Controller
         return view('web.profile.index');
     }
 
-    public function asside()
-    {
-
-        $similar_posts = $this->_getSimilarPost();
-
-        return view('template.asside', compact('similar_posts'));
-    }
-
-    private function _getSimilarPost($post)
-    {
-        $other_posts = Post::where('status', '2')->where('id', '!=', $post->id)->limit(2)->get();
-        return $other_posts;
-    }
-
-    private function __register_session($post)
-    {
-        $post = [
-            'name' => $post->name,
-            'slug' => $post->slug,
-        ];
-        request()->session()->put('post', $post);
-    }
-
-    private function __registerLog($model)
-    {
-        $session = request()->session()->get('_token');
-        LogHelper::register_view($model, $session);
-    }
-
-    private function __register_visit($post)
-    {
-        $post->visits = $post->visits + 1;
-        $post->save();
-    }
 }
