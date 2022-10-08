@@ -3,15 +3,14 @@
 @section('content')
     <div class="container">
         <div>
-            <p class="text-left text-2xl p-2">
-                Formulario de contacto
-            </p>
+            <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-cyan-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+                Formulario de contacto </h1>
             <hr>
         </div>
         <div class="flex justify-center">
             <!-- component -->
             <form class="w-full max-w-lg" action="{{ route('contact.sent') }}" method="POST">
-                @csrf 
+                @csrf
                 <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -118,6 +117,7 @@
                         <button
                             class="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded"
                             style="color:#303a52;"
+                            aria-label="enviar"
                             type="submit">
                             Enviar
                         </button>

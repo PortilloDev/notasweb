@@ -42,7 +42,7 @@
                             <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger">Eliminar</button>    
+                                <button class="btn btn-danger" aria-label="Eliminar">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -54,7 +54,7 @@
             </tbody>
         </table>
     </div>
-   
+
 @stop
 
 @section('css')

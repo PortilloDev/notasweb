@@ -1,95 +1,60 @@
 @extends('layouts.app')
 @section('meta_title', 'Sobre mì ')
-@section('content')
-<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
 
-<main class="profile-page">
-  <section class="relative block h-500-px">
-    <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
-            background-image: url('{{ asset('storage/blog/profile_home.jpg') }}');
-          ">
-      <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
-    </div>
-    <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px)">
-      <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
-        <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div>
-  </section>
-  <section class="relative py-16 bg-blueGray-200">
-    <div class="container mx-auto px-4">
-      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-        <div class="px-6">
-          <div class="flex flex-wrap justify-center">
-            <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-              <div class="relative">
-                <img alt="..." src="{{ asset('storage/blog/profile.jpg') }}" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
-              </div>
-            </div>
-            <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-              <div class="py-6 px-3 mt-32 sm:mt-0">
-                <a href="{{route('contact')}}" style="background-color: #303a52" class="active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                 Contactar
-                </a>
-              </div>
-            </div>
-            <div class="w-full lg:w-4/12 px-4 lg:order-1">
-              <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                <div class="mr-4 p-3 text-center">
-                  <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">+3</span><span class="text-sm text-blueGray-400">Años experiencía</span>
+
+@section('content')
+
+    <div class="container mb-8">
+        <div class="flex justify-center">
+            <main class="mb-auto">
+                <div class="divide-y">
+                    <div class="pt-6 pb-8 space-y-2 md:space-y-5">
+                        <h1
+                            class="text-3xl font-extrabold leading-9 tracking-tight text-cyan-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+                            Sobre mí</h1>
+                    </div>
+                    <div class="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
+                        <div class="flex flex-col items-center pt-8 space-x-2"><span
+                                style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"><span
+                                    style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"><img
+                                        alt="" aria-hidden="true"
+                                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+                                        style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"></span><img
+                                    alt="avatar"
+                                    srcset="{{ asset('storage/blog/profile.jpg') }}"
+                                    src="{{ asset('storage/blog/profile.jpg') }}"
+                                    decoding="async" data-nimg="intrinsic" class="w-48 h-48 rounded-full"
+                                    style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"><noscript></noscript></span>
+                            <h3 class="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">Iván Portillo</h3>
+                            <div class="text-gray-500 dark:text-gray-400">Analista desarrollador</div>
+                            <div class="text-gray-500 dark:text-gray-400">UNIR</div>
+
+                        </div>
+                        <div class="pt-8 pb-8 prose dark:prose-dark max-w-none xl:col-span-2">
+                            <p>
+                                Desarrollador de aplicaciones web con más de 4 años de experiencia, he participado en numerosos proyectos como Consultor, Arquitecto y Analista Programador.
+                                Participando activamente en el desarrollando de las diferentes fases del proyecto.
+                            </p>
+                            <p> Estoy especializado en PHP y en sus frameworks de Laravel, Symfony y Slim. También desarrollo en otros lenguajes de programación (Java, Javascript, C#, VB) y frameworks (.NET, Net Core , Spring).
+                                 A pesar de tener una fuerte orientación al backend, me manejo bien en todos los ámbitos del desarrollo web, pudiendo abarcar todos los aspectos del desarrollo. </p>
+
+                            <p>
+                                Otras tecnologías que manejo son Angular, React, Docker, Git, Azure, Bases de datos SQL y NoSql. Trabajo usando patrones de diseño, principios SOLID y clean code.
+                            </p>
+                                <p>Durante este tiempo he trabajo en los departamentos de sistemas y de desarrollador
+                            de Kuehne Nagel, Heartcoded y UNIR. Trabajando en diversos proyectos y para varios
+                            tipos de clientes.
+                            También me gusta realizar proyectos personales y trabajos como freelance.</p>
+                            <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
+                                Puedes contactar conmigo a través del
+                                formulario de  <a href="{{ route('contact') }}">contacto</a>, mis redes sociales o mi correo <a class="text-blue-800"
+                                    href="mailto:blognotasdesarrolloweb@gmail.com">blognotasdesarrolloweb@gmail.com</a>
+                            </p>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="mr-4 p-3 text-center">
-                  <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">10</span><span class="text-sm text-blueGray-400">Proyectos</span>
-                </div>
-                <div class="lg:mr-4 p-3 text-center">
-                  <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">35</span><span class="text-sm text-blueGray-400">Repositorios</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center mt-12">
-            <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-             Iván Portillo Pérez
-            </h3>
-            <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-              <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-              Madrid, España
-            </div>
-            <div class="mb-2 text-blueGray-600 mt-10">
-              <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>Programador web - Desarrollador Backend
-            </div>
-            <div class="mb-2 text-blueGray-600">
-              <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i> Universidad Naciaonal Española a Distancia (UNED)
-            </div>
-          </div>
-          <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
-            <div class="flex flex-wrap justify-center">
-              <div class="w-full lg:w-9/12 px-4">
-                <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  Llevo más de 3 años programando. Empecé construyendo aplicaciones de escritorio en .NET y macros en visual basic, hasta que un día decidí dar el paso a la web.
-                  Desde entonces no he parado de avanzar y probar tecnologías nuevas. Acostumbrado a trabajar en diversos proyectos con Laravel, PHP, .NET y JavaScript. 
-                  Tengo una fuerte orientación hacia el backend, pero cada día le voy cogiendo más el gustillo al fronted usando tecnologías como Tailwind.
-                </p>
-                <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  Durante este tiempo he trabajo en los departamentos de sistemas y de desarrollador de Kuehne Nagel, Heartcoded y UNIR. Trabajando en diversos proyectos y para varios tipos de clientes. 
-                  También me gusta realizar proyectos personales y trabajos como freelance.
-                </p>
-                <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  Me encanta formarme y seguir aprendiendo, creo que son las mejores armas para seguir avanzando además de la constancia y el trabajo.
-                </p>
-                <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  Si creéis que os podría interesar, no dudéis en contactar conmigo a través del formulario de contacto, mis redes sociales o mi correo <a class="text-blue-800" href="mailto:blognotasdesarrolloweb@gmail.com">blognotasdesarrolloweb@gmail.com</a>
-                </p>
-                <a href="{{route('contact')}}" style="background-color: #303a52" class="active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
-                  Contactar
-                 </a>
-              </div>
-            </div>
-          </div>
+            </main>
         </div>
-      </div>
     </div>
-  </section>
-</main>
 @endsection

@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
             <div class="text-center font-bold">
-                <h1>Condiciones de uso y aviso legal</h1>
+                <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-cyan-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+                            Condiciones de uso y aviso legal</h1>
             </div>
             <hr class="bg-blue-700">
             <div class="mx-auto text-left">
@@ -19,7 +20,7 @@
                         <h3 id="principios-aplicados-en-el-tratamiento-de-datos">Propiedad intelectual</h3>
                         <p>El contenido del sitio web pertenece al que suscribe el nombre del dominio (Iván Portillo). Cualquier persona puede compartir y hacer uso del contenido del sitio web, siempre que al menos dé crédito de su autoría y que no modifique o cambie el sentido de la publicación. </p>
                         <p>Me reservo el derecho de modificar o borrar el contenido del sitio web sin ningún aviso. No me hago responsable del uso inadecuado que otras personas puedan hacer de las publicaciones, en lugares externos.</p>
-                        
+
                         <h3 id="principios-aplicados-en-el-tratamiento-de-datos">Obtención de datos personales</h3>
                         <p>Para navegar por <span class="resaltar">https://notasweb.me</span> no es necesario que facilites ningún dato personal.</p>
                         <p> En este sitio web existe la posibilidad de dejar datos personales en el formulario de contacto. El sitio web garantiza la transmisión segura de los datos al utilizar protocolo de encriptación SSL.</p>
@@ -31,7 +32,7 @@
                     <h3 id="política-de-cookies">Política de Cookies</h3>
                     <p>Para que este sitio Web funcione correctamente necesita utilizar cookies, que es una información que se almacena en tu navegador web.</p>
                     <p>En la página Política de Cookies puedes consultar toda la información relativa a la política de recogida, la finalidad y el tratamiento de las cookies.</p>
-                    
+
                 </div>
             </div>
     </div>

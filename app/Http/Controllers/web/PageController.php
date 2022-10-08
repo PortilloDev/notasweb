@@ -105,7 +105,7 @@ class PageController extends Controller
     public function documentation()
     {
         $documentations = $this->documentActions->getDocumentations();
-        $this->__registerLog($documentations[0]);
+        $this->registerActions->registerLog($documentations[0]);
         return view('web.document.home', compact('documentations'));
     }
 

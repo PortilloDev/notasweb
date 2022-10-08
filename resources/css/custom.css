@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800&display=swap');
+
+html{
+    font-family: "Roboto Flex";
+}
+
 a {
     text-decoration: none !important;
 }
@@ -7,16 +13,16 @@ div#social-links {
 }
 div#social-links ul li {
     display: inline-block;
-}          
+}
 div#social-links ul li a {
-    padding: 20px;
-    border: 1px solid #303a52;
+    padding: 2px;
+    /* border: 1px solid #303a52; */
     margin: 1px;
     margin-top: 4px;
     font-size: 30px;
-    color: white;
-    background-color: #303a52;
-    gap: 2px
+    color: blak;
+    /* background-color: #303a52; */
+    gap: 2px;
 }
 @media screen and (max-width: 780px){
     div#social-links {
@@ -26,7 +32,7 @@ div#social-links ul li a {
     }
     div#social-links ul li {
         display: inline-block;
-    }  
+    }
     div#social-links ul li a {
         padding: 20px;
         border: 1px solid #303a52;
@@ -47,7 +53,7 @@ div#social-links ul li a {
     }
     div#social-links ul li {
         display: inline-block;
-    }  
+    }
     div#social-links ul li a {
         padding: 5px;
         border: 1px solid #303a52;
