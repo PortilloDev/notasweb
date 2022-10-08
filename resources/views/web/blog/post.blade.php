@@ -4,105 +4,157 @@
     $url = Request::url();
     $texts = $text_layout::getHeaderText();
     $url_image = Storage::url($post->image->url);
+
+    $otherPost = [];
+    $index = 0;
+
+    foreach ($similar_posts as $nextPost) {
+        $otherPost[$index++] = $nextPost;
+    }
+
 @endphp
 
 @section('meta_title', $post->name)
 @section('meta_image', asset($url_image))
 
 @section('content')
+    <section class="container mx-auto p-2">
+        <div class="content-center">
+            @livewire('search')
+        </div>
 
-    <section class="w-auto h-auto bg-center bg-cover" style="background-image: url({{ Storage::url($post->image->url) }})">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">
-            <div class="w-full md:w-3/4 lg:w-1/2">
-                <h1 class="text-black font-bold text-5xl">{{ $texts->h1 }}</h1>
-                <p class="text-black text-lg mt-2 mb-4">{{ $texts->paragraph }}</p>
-                @livewire('search')
+    </section>
+
+    <body class="bg-white text-black antialiased dark:bg-gray-900 dark:text-white" style="zoom: 1; overflow: auto;">
+        <div id="__next" data-reactroot="">
+            <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+                <div class="flex flex-col justify-between">
+                    <main class="mb-auto">
+                        <div class="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+                           <article>
+                                <div class="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+                                    <header class="pt-6 xl:pb-6">
+                                        <div class="space-y-1 text-center">
+                                            <dl class="space-y-10">
+                                                <div>
+                                                    <dt class="sr-only">Published on</dt>
+                                                    <dd
+                                                        class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                                                        <time datetime="2021-05-02T00:00:00.000Z">{{$post->created_at->format('d M   Y')}}</time>
+                                                    </dd>
+                                                </div>
+                                            </dl>
+                                            <div>
+                                                <h1
+                                                    class="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+                                                    {{$post->name}}</h1>
+
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <div class="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
+                                        style="grid-template-rows: auto 1fr;">
+                                        <dl
+                                            class="pt-6xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
+                                            <dt class="sr-only">Authors</dt>
+                                            <dd>
+                                                <ul
+                                                    class="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
+                                                    <li class="flex items-center space-x-2">
+                                                        <span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;">
+                                                            <span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;">
+                                                                <img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2738%27%20height=%2738%27/%3e" style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;">
+                                                            </span>
+                                                        <img alt="avatar" src="{{ asset('storage/blog/avatar.png') }}" decoding="async" data-nimg="intrinsic" class="h-10 w-10 rounded-full" srcset="{{ asset('storage/blog/avatar.png') }}" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;">
+                                                        <noscript>
+                                                            </noscript>
+                                                        </span>
+
+
+                                                        <dl class="whitespace-nowrap text-sm font-medium leading-5">
+                                                            <dt class="sr-only">Name</dt>
+                                                            <dd class="text-gray-900 dark:text-gray-100">{{ $post->user->name }}</dd>
+                                                            <dt class="sr-only">Twitter</dt>
+                                                            <dd><a target="_blank" rel="noopener noreferrer"
+                                                                    href="https://mobile.twitter.com/portillo_dev"
+                                                                    class="text-blue-500 hover:text-blue-700 dark:hover:text-primary-400">@portillo_dev</a>
+                                                            </dd>
+                                                        </dl>
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                        <div
+                                            class="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
+                                            <div class="prose max-w-none pt-10 pb-8 dark:prose-dark">
+                                                <p class="pb-6"> {!! $post->excerpt !!}</p>
+                                                <p class="pb-6"> {!! $post->body !!}</p>
+                                            </div>
+                                            <div class="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300 text-center">
+                                                  <i class="fas fa-eye"></i> <span class="text-base"> {{ $post->visits }} </span>
+                                            </div>
+
+                                        </div>
+                                        <footer>
+                                            <div
+                                                class="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
+                                                <div class="py-4 xl:py-8">
+                                                    <h2
+                                                        class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                                                        Tags</h2>
+                                                        <div class="flex flex-wrap">
+                                                            <i class="fas fa-tags"></i>
+                                                            @foreach ($post->tags as $tag)
+                                                                <span
+                                                                    class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                                                                    <a href="{{ route('tag', $tag->slug) }}">
+                                                                        #{{ $tag->name }}
+                                                                    </a>
+                                                                </span>
+                                                            @endforeach
+                                                        </div>
+                                                </div>
+                                                <div class="py-4 xl:py-8">
+                                                    <h2
+                                                        class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                                                        COMPARTIR</h2>
+                                                        <div class="flex flex-wrap">
+                                                            {!! $post->getShare($url, $post->name) !!}
+                                                        </div>
+                                                </div>
+                                                <div class="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
+                                                    <div>
+                                                        <h2
+                                                            class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                                                            Aritculo anterior</h2>
+                                                        <div
+                                                            class="text-primary-500 hover:text-primary-700 dark:hover:text-primary-400">
+                                                            <a  href="{{ route('post', $otherPost[0]->slug) }}">{{$otherPost[0]->name}}</a></div>
+                                                    </div>
+                                                    <div>
+                                                        <h2
+                                                            class="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                                                            Siguiente Articulo</h2>
+                                                        <div
+                                                            class="text-primary-500 hover:text-primary-700 dark:hover:text-primary-400">
+                                                            <a href="{{ route('post', $otherPost[1]->slug) }}">{{$otherPost[1]->name}}</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pt-4 xl:pt-8"><a
+                                                    class="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                                                    href="{{route('blog')}}">← Volver al blog</a></div>
+                                        </footer>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </main>
+
+                </div>
             </div>
         </div>
-    </section>
-    <div class="max-w-screen-lg mx-auto">
-        <main class="mt-10">
-            <div class="mb-4 md:mb-0 w-full mx-auto relative">
-                <div class="px-4 lg:px-0">
-                    <h2 class="text-4xl font-semibold text-gray-800 leading-tight">
-                        {{ $post->name }}
-                    </h2>
-                    <i class="fas fa-tags"></i>
-                    @foreach ($post->tags as $tag)
-                        <span
-                            class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                            <a href="{{ route('tag', $tag->slug) }}">
-                                #{{ $tag->name }}
-                            </a>
-                        </span>
-                    @endforeach
-                </div>
-                {{-- <img src="{{ Storage::url($post->image->url) }}" class="w-full object-cover lg:rounded" style="height: 28em;"/> --}}
-            </div>
-            <div class="w-auto grid justify-start p-2 mt-2 md:flex justify-between  ">
-                <div class="md:ml-5">
-                    Categoria
-                    <a href="{{ route('category', $post->category->slug) }}">{{ $post->category->name }}</a>
-                </div>
-                <div>
-                    <i class="fas fa-eye"></i> <span class="text-base"> {{ $post->visits }} </span>
-                </div>
-                <div class="mr-5">
-                    <p> Publicado por <strong> {{ $post->user->name }} </strong> el
-                        {{ $post->created_at->format('d/m/Y') }}</p>
-                </div>
-            </div>
-            <hr>
 
-            <div class="flex flex-col lg:flex-row lg:space-x-12">
-                <div class="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
-                    <p class="pb-6"> {!! $post->excerpt !!}</p>
-                    <p class="pb-6"> {!! $post->body !!}</p>
-                </div>
-                <div class="w-full lg:w-1/4 max-w-screen-sm">
-                    <div class="p-4 border-t border-b md:border md:rounded">
-                        <div class="flex py-2">
-                            <img src="{{ asset('storage/blog/profile.jpg') }}"
-                                class="h-10 w-10 rounded-full mr-2 object-cover" />
-                            <div>
-                                <p class="font-semibold text-gray-700 text-sm"> Iván Portillo </p>
-                                <p class="font-semibold text-gray-600 text-xs"> Programador Backend </p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700 py-3">
-                            Soy desarrollador backend en Laravel y PHP. Me gusta escribir sobre desarrollo web,
-                            programación y tecnología en general.
-                        </p>
-                        <a href="{{ route('perfil') }}"
-                            class="px-2 py-1 text-gray-100 bg-green-700 flex w-full items-center justify-center rounded"
-                            style="background-color: #303a52">
-                            Sobre mí
-                            <i class='bx bx-user-plus ml-2'></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="mt-10 mb-10">
-                {!! $post->getShare($url, $post->name) !!}
-            </div>
-            <hr>
-            <div class="mb-5">
-                <section class="mb-10 mx-auto max-w-screen-xl px-4 xl:px-0">
-                    <div class="mt-6 mb-4 font-semibold text-center">
-                        <h3>Otros articulos</h3>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mx-auto max-w-screen-xl ">
-                        @if (isset($similar_posts))
-                            @foreach ($similar_posts as $post)
-                                <div class="w-auto cursor-pointer rounded-md shadow-md shadow-gray-200 hover:shadow-blue-400/80 hover:shadow-2xl hover:bg-gray-50">
-                                    <x-card-post :post="$post" />
-                                </div>
-                            @endforeach
-                        @endif
-                    </div>
-                </section>
-            </div>
-        </main>
-    </div>
+    </body>
+
 @endsection

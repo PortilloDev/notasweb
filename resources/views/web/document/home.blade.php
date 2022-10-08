@@ -4,7 +4,8 @@
     <div class="container">
         <div class="">
             <div>
-                <h1>Documentación oficial</h1>
+                <h1 class="text-3xl font-extrabold leading-9 tracking-tight text-cyan-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+                    Documentación </h1>
             </div>
             <div>
                 <p> Enlaces a la documentación oficial de frameworks y lenguajes de programación. </p>
@@ -12,7 +13,7 @@
             <hr>
             <div class="mb-2">
                 @livewire('search-documents', ['documentations' => $documentations])
-            </div>           
+            </div>
         </div>
     </div>
 @endsection
