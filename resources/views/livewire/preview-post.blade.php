@@ -7,10 +7,11 @@
                     <th scope="col" class="text-left">Nombre</th>
                     <th scope="col" class="text-left">Estado</th>
                     <th scope="col" colspan="2" class="text-left">Acción</th>
-    
+
             </tr>
             <tbody>
                 @forelse ($posts as $item)
+
                     <tr class="p-2 border-b-2">
                         <td scope="row">  {{$item->id}}   </td>
                         <td scope="row">  {{$item->name}}   </td>
@@ -19,10 +20,10 @@
                         @else
                             <td scope="row"><span class="label label-primary">✅</span></td>
                         @endif
-                        <td scope="row">   
+                        <td scope="row">
                             <button wire:click="viewModal({{$item->id}})" data-toggle="modal" data-target="#exampleModal" class="rounded primary">
                                 Visualizar
-                            </button>  
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -30,7 +31,7 @@
         </table>
     </div>
 
-   
+
    @if($this->post)
    {{-- START MODAL  --}}
     <div wire:ignore.self class="modal fade" id="exampleModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,7 +45,7 @@
                 <div class="col-6">
                     <a href="{{route('admin.posts.edit', ['post' => $post])}}">ir a editar post</a>
                 </div>
-            </div>    
+            </div>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -53,7 +54,7 @@
             <div class=" mx-auto w-auto px-4 xl:px-0">
                 <section class="bg-contain lg:bg-cover" style="background-image: url({{ Storage::url($post->image->url) }});
                     background-position:center;background-repeat:no-repeat;">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">     
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-36">
                     </div>
                 </section>
                 <div class=" ">
@@ -68,7 +69,7 @@
                             </div>
                         </div>
                         <hr>
-    
+
                         <div class="mt-5 mb-8">
                             <h1 class="font-fold text-6xl text-center font-bold mt-11" style="color:#303a52">{{ $post->name }}</h1>
                         </div>
@@ -84,7 +85,7 @@
                                 </div>
                                 <div class="w-1/6 mt-2 text-center">
                                 </div>
-                            </div>                   
+                            </div>
                             <hr>
                             Etiquetas
                             <i class="fas fa-tags"></i>
@@ -96,7 +97,7 @@
                         </div>
                 </div>
                 <hr>
-            </div> 
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="$set('open', false)">Close</button>
