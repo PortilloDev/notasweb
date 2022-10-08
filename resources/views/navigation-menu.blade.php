@@ -24,7 +24,7 @@
                             <use xlink:href="#logo_svg__a" fill="url(#logo_svg__b)"></use>
                             <use xlink:href="#logo_svg__c" fill="url(#logo_svg__d)"></use>
                         </svg>
-                        <span class="font-semibold text-4xl" style="color:#67e8f9">Notas web</span>
+                        <span class="font-semibold text-4xl" style="color:#38c0d3">Notas web</span>
                     </a>
                 </div>
             </div>
