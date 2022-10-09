@@ -30,7 +30,7 @@
         @endif
     </ul>
 
-    <div class="flex justify-end text-base font-medium leading-6">
+    <div class="flex justify-center text-base font-normal leading-6">
         {{ $posts->links() }}
     </div>
 @endsection

@@ -3,7 +3,7 @@
 @php
     $url = Request::url();
     $texts = $text_layout::getHeaderText();
-    $url_image = Storage::url($post->image->url);
+    $url_image = '';
 
     $otherPost = [];
     $index = 0;
