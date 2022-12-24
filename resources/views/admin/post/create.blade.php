@@ -13,7 +13,7 @@
         <form method="post" class="form form-horizontal" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data">
             @csrf
             @include('admin.post.partials.form')
-        
+
             <div class="form-group">
                 <input type="submit" value="Submit" class="btn btn-primary"/>
             </div>
@@ -23,6 +23,3 @@
 
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop

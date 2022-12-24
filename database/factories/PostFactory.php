@@ -31,6 +31,7 @@ class PostFactory extends Factory
             'excerpt' => "Un texto cualquiera",
             'body' => "Un texto cualquiera, en el body",
             'status' => 1,
+            'file' => 'public/articleocw-5865402b2882d.jpg',
         ];
     }
 }

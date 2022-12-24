@@ -19,7 +19,7 @@
     <div class="card-body">
         <table class="table table-striped">
             <thead>
-                <tr> 
+                <tr>
                     <th>Id</th>
                     <th>H1</th>
                     <th>Parrafo</th>
@@ -44,7 +44,7 @@
                             <form action="{{ route('admin.layouts.destroy', $layout) }}" method="POST">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger">Eliminar</button>    
+                                <button class="btn btn-danger">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -58,9 +58,6 @@
     </div>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
 @section('js')
     <script> console.log('Hi!'); </script>

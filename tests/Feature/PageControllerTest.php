@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PageControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+
     public function testExistContactView()
     {
 

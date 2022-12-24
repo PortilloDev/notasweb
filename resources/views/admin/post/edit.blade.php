@@ -28,5 +28,5 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script src="{{ asset('/vendors/ckeditor/ckeditor.js') }}">console.log('llega')</script>
 @stop

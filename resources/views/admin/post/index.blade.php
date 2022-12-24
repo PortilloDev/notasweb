@@ -19,7 +19,7 @@
     <div class="card-body">
         <table class="table table-striped">
             <thead>
-                <tr> 
+                <tr>
                     <th>Id</th>
                     <th>Autor</th>
                     <th>Categoria</th>
@@ -45,7 +45,7 @@
                         @else
                         <td>✅</td>
                         @endif
-                        
+
                         <td width="10px">
                             <a class="btn btn-secondary" href="{{ route('admin.posts.edit', $post) }}">Edit</a>
                         </td>
@@ -53,7 +53,7 @@
                             <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
                                 @method('delete')
                                 @csrf
-                                <button class="btn btn-danger">Eliminar</button>    
+                                <button class="btn btn-danger">Eliminar</button>
                             </form>
                         </td>
                     </tr>
