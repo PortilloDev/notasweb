@@ -49,11 +49,6 @@
                             href="{{ route('perfil') }}">Sobre
                             mí</a>
                     </li>
-                    <li class="mx-4 my-6 md:my-0">
-                        <a class="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
-                            href="https://ivan-portillo-perez.com" target="_blank">Portfolio</a>
-                    </li>
-
                 </ul>
 
             </div>
@@ -83,9 +78,6 @@
             <li><a href="{{ route('perfil') }}"
                     class="block text-sm px-2 py-4 text-black transition duration-300 hover:bg-sky-500 hover:ring-sky-500 cursor-pointer">Sobre
                     mí</a></li>
-            <li><a href="https://ivan-portillo-perez.com" target="_blank"
-                    class="block text-sm px-2 py-4 text-black transition duration-300 hover:bg-sky-500 hover:ring-sky-500  cursor-pointer">Portfolio</a>
-            </li>
         </ul>
     </div>
     <script>

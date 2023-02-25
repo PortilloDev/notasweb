@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\ContactController;
+use App\Http\Controllers\Api\V1\VisitsController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,9 +15,10 @@ use App\Http\Controllers\Api\V1\ContactController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 
 Route::post('v1/contact_form', [ContactController::class, 'contact']);
+Route::post('v1/visits', [VisitsController::class, '__invoke']);
