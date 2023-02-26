@@ -70,7 +70,7 @@ class VisitsController extends Controller
                 '_token'=> $token->uuid3(),
                 'info'=> $model->id . ' => '. $data['referrer'],
                 'model'=> get_class($model),
-                'pages'=> $data['referrer'],
+                'pages'=> json_encode(["page" => $data['referrer']]),
             ]);
 
             LogModel::create($data);
